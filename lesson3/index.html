@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Lesson 3 — Variance &amp; Standard Deviation · 9709 P5 Ch3</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script>
+    window.MathJax = {
+      tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},
+      options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},
+      svg:{fontCache:'global'},
+      startup:{typeset:true, ready:()=>MathJax.startup.defaultReady()}
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- 1. TITLE -->
+<section>
+  <span class="step">LESSON 3 · 35 MIN</span>
+  <h1>Variance &amp; Standard Deviation</h1>
+  <hr class="rule">
+  <p style="color:var(--chalk);font-size:1.1em">A single number for spread that uses <em>every</em> data value — not just the extremes.</p>
+  <p class="mini">Cambridge 9709 Paper 5 · Topic 5.1 · Ch 3 §3.4</p>
+</section>
+
+<!-- 2. DEVIATION IDEA -->
+<section>
+  <span class="step teal">CORE · DEVIATION</span>
+  <h2>Measuring spread about the mean</h2>
+  <div class="two-col wide-right">
+    <div>
+      <p>Each value has a <strong>deviation</strong> $x_i - \bar{x}$ from the mean. Their sum is always zero, so we <em>square</em> before averaging.</p>
+      <div class="big-eq teal" style="margin-top:12px">
+        $\text{Var}(x) = \dfrac{\sum (x - \bar{x})^2}{n}$
+      </div>
+      <p style="margin-top:12px"><strong>Standard deviation</strong> = $\sqrt{\text{Variance}}$ — back in the original units.</p>
+    </div>
+    <div class="center">
+      <img class="crop" src="../crops/D7_deviation_line.png" alt="Deviation line illustration">
+      <div class="crop-cap">Cambridge Coursebook §3.4</div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. COMPUTATION FORMULA -->
+<section>
+  <span class="step">CORE · COMPUTATION</span>
+  <h2>The exam-ready formula</h2>
+  <p>Expanding $(x-\bar{x})^2$ gives a version you can compute from just $\sum x$ and $\sum x^2$:</p>
+  <div class="big-eq" style="margin-top:8px">
+    $\text{SD}(x) = \sqrt{\dfrac{\sum x^2}{n} - \bar{x}^{\,2}} \qquad \bar{x} = \dfrac{\sum x}{n}$
+  </div>
+  <p style="margin-top:12px">For a <strong>frequency table</strong>:</p>
+  <div class="big-eq teal">
+    $\text{SD}(x) = \sqrt{\dfrac{\sum x^2 f}{\sum f} - \bar{x}^{\,2}} \qquad \bar{x} = \dfrac{\sum xf}{\sum f}$
+  </div>
+  <p class="mini" style="margin-top:10px">Always use the <em>exact</em> mean inside $\bar{x}^2$ — a rounded mean can swing the SD by ~15%.</p>
+</section>
+
+<!-- 4. WORKED EXAMPLE 3.7 -->
+<section>
+  <span class="step rose">WORKED · FREQUENCY TABLE</span>
+  <h2>Worked example 3.7</h2>
+  <div class="two-col">
+    <div class="card rose">
+      <span class="label">Set-up</span>
+      <p style="margin:6px 0">Find the SD of $x$ given:</p>
+      <table style="margin:4px auto;border-collapse:collapse;color:#fff">
+        <tr><th style="border:1px solid rgba(255,255,255,.3);padding:4px 16px">$x$</th><th style="border:1px solid rgba(255,255,255,.3);padding:4px 16px">$f$</th></tr>
+        <tr><td style="border:1px solid rgba(255,255,255,.3);padding:4px 16px;text-align:center">12</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 16px;text-align:center">13</td></tr>
+        <tr><td style="border:1px solid rgba(255,255,255,.3);padding:4px 16px;text-align:center">14</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 16px;text-align:center">28</td></tr>
+        <tr><td style="border:1px solid rgba(255,255,255,.3);padding:4px 16px;text-align:center">16</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 16px;text-align:center">10</td></tr>
+      </table>
+      <p style="margin:6px 0">$\sum f=51,\ \sum xf=708,\ \sum x^2 f=9920$.</p>
+    </div>
+    <div class="answer">
+      <span class="label">Verified answer</span>
+      $\bar{x}=\tfrac{708}{51}$ (keep exact).<br>
+      $\text{SD} = \sqrt{\tfrac{9920}{51} - \left(\tfrac{708}{51}\right)^2} = \mathbf{1.34}$ (3 s.f.)
+    </div>
+  </div>
+</section>
+
+<!-- 5. CLASSWORK -->
+<section>
+  <span class="step">CLASSWORK · 7 MIN</span>
+  <h2>Try it yourself</h2>
+  <div class="card gold">
+    <p class="q">Find the mean and the standard deviation for the set of numbers: <strong>27, 43, 29, 34, 53, 37, 19, 58</strong>. <span class="marks">[Exercise 3B Q1a]</span></p>
+    <p class="mini">Hint: $n=8$. Compute $\sum x$ and $\sum x^2$ first.</p>
+  </div>
+  <div class="fragment">
+    <div class="answer">
+      <span class="label">Verified final answer</span>
+      $\sum x = 300 \Rightarrow \bar{x} = \tfrac{300}{8} = 37.5$.<br>
+      $\sum x^2 = 729+1849+841+1156+2809+1369+361+3364 = 12\,478$.<br>
+      $\text{Var} = \tfrac{12478}{8} - 37.5^2 = 1559.75 - 1406.25 = 153.5$.<br>
+      <strong>Mean $= 37.5$</strong> and <strong>SD $= \sqrt{153.5} \approx 12.39$</strong> (2 d.p.).
+    </div>
+  </div>
+</section>
+
+<!-- 6. ASSIGNMENT -->
+<section>
+  <span class="step violet">ASSIGNMENT · TAKE HOME</span>
+  <h2>For next lesson</h2>
+  <div class="card violet">
+    <p class="q">The following table shows the number of pets owned by each of 35 families. Find the mean and variance of the number of pets. <span class="marks">[Exercise 3B Q3]</span></p>
+    <table style="margin:8px auto;border-collapse:collapse;color:#fff">
+      <tr><th style="border:1px solid rgba(255,255,255,.3);padding:4px 14px">No. pets</th><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">0</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">1</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">2</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">3</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">4</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">5</td></tr>
+      <tr><th style="border:1px solid rgba(255,255,255,.3);padding:4px 14px">No. families</th><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">6</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">12</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">9</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">4</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">3</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">1</td></tr>
+    </table>
+  </div>
+  <div class="fragment">
+    <div class="answer">
+      <span class="label">Verified final answer</span>
+      $\sum f = 35$; $\sum xf = 0+12+18+12+12+5 = 59$; $\sum x^2 f = 0+12+36+36+48+25 = 157$.<br>
+      $\bar{x} = \tfrac{59}{35} \approx 1.69$ pets.<br>
+      $\text{Var} = \tfrac{157}{35} - \left(\tfrac{59}{35}\right)^2 \approx 4.486 - 2.841 \approx 1.64$.<br>
+      <strong>Mean $\approx 1.69$</strong> and <strong>Variance $\approx 1.64$</strong>.
+    </div>
+  </div>
+</section>
+
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="../assets/boot.js"></script>
+</body>
+</html>

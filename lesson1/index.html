@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Lesson 1 — Range &amp; Quartiles (Ungrouped) · 9709 P5 Ch3</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script>
+    window.MathJax = {
+      tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},
+      options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},
+      svg:{fontCache:'global'},
+      startup:{typeset:true, ready:()=>MathJax.startup.defaultReady()}
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- 1. TITLE -->
+<section>
+  <span class="step">LESSON 1 · 35 MIN</span>
+  <h1>Range &amp; Quartiles</h1>
+  <hr class="rule">
+  <p style="color:var(--chalk);font-size:1.1em"><strong>Ungrouped data.</strong> The two cases that split every exam question: <em>even n</em> and <em>odd n</em>.</p>
+  <p class="mini">Cambridge 9709 Paper 5 · Topic 5.1 · Ch 3 §3.1–3.2</p>
+</section>
+
+<!-- 2. RANGE + IQR DEFINITION -->
+<section>
+  <span class="step">CORE CONCEPT</span>
+  <h2>Range and interquartile range</h2>
+  <div class="two-col wide-right">
+    <div>
+      <p><strong>Range</strong> = largest value − smallest value.</p>
+      <p>Simple, but easily thrown off by a single outlier.</p>
+      <p><strong>Interquartile range (IQR)</strong> = $Q_3 - Q_1$ — the spread of the <em>middle 50%</em> only, so it ignores extreme values.</p>
+      <div class="big-eq teal" style="margin-top:14px">
+        $\text{IQR} = Q_3 - Q_1$
+      </div>
+    </div>
+    <div class="center">
+      <img class="crop" src="../crops/D1_iqr_structure.png" alt="IQR structural diagram">
+      <div class="crop-cap">Cambridge Coursebook §3.2</div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. EVEN n -->
+<section>
+  <span class="step teal">PROCEDURE · EVEN n</span>
+  <h2>When $n$ is <em>even</em></h2>
+  <p>Split the ordered data into two halves. $Q_1$ = median of lower half; $Q_3$ = median of upper half.</p>
+  <img class="crop" src="../crops/D2_worked32_even_n.png" alt="Worked 3.2 even n positions">
+  <div class="two-col" style="margin-top:14px">
+    <div class="card teal">
+      <span class="label">Worked 3.2</span>
+      <p style="margin:6px 0">Data: 2, 5, 9, 13, 29, 33, 49, 55&nbsp;&nbsp;($n=8$)</p>
+      <p style="margin:6px 0">$Q_1 = \dfrac{5+9}{2} = 7$,&nbsp; $Q_3 = \dfrac{33+49}{2} = 41$</p>
+    </div>
+    <div class="answer">
+      <span class="label">Verified answer</span>
+      $\text{IQR} = 41 - 7 = \mathbf{34}$
+    </div>
+  </div>
+</section>
+
+<!-- 4. ODD n -->
+<section>
+  <span class="step rose">PROCEDURE · ODD n</span>
+  <h2>When $n$ is <em>odd</em></h2>
+  <p>Find the median, <strong>discard it</strong>, then split the remaining values into two halves.</p>
+  <img class="crop" src="../crops/D3_worked33_odd_n.png" alt="Worked 3.3 odd n positions">
+  <div class="two-col" style="margin-top:14px">
+    <div class="card rose">
+      <span class="label">Worked 3.3</span>
+      <p style="margin:6px 0">Ordered: 6, 17, 39, 43, 69, 73, 77&nbsp;&nbsp;($n=7$)</p>
+      <p style="margin:6px 0">Median $=43$ (discard). Lower half: 6, 17, 39 &rarr; $Q_1=17$. Upper half: 69, 73, 77 &rarr; $Q_3=73$.</p>
+    </div>
+    <div class="answer">
+      <span class="label">Verified answer</span>
+      $\text{IQR} = 73 - 17 = \mathbf{56}$
+    </div>
+  </div>
+</section>
+
+<!-- 5. CLASSWORK -->
+<section>
+  <span class="step">CLASSWORK · 5 MIN</span>
+  <h2>Try it yourself</h2>
+  <div class="card gold">
+    <p class="q">Find the range and the interquartile range of the following set of values: <strong>5, 8, 13, 17, 22, 25, 30</strong>. <span class="marks">[Exercise 3A Q1a]</span></p>
+    <p class="mini">Hint: $n = 7$ — which case is this?</p>
+  </div>
+  <div class="fragment">
+    <div class="answer">
+      <span class="label">Verified final answer</span>
+      Ordered values are already in order. Median $Q_2 = 17$ (discard). Lower half: 5, 8, 13 &rarr; $Q_1 = 8$. Upper half: 22, 25, 30 &rarr; $Q_3 = 25$.<br>
+      <strong>Range $= 30 - 5 = 25$</strong> and <strong>IQR $= 25 - 8 = 17$</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- 6. ASSIGNMENT -->
+<section>
+  <span class="step violet">ASSIGNMENT · TAKE HOME</span>
+  <h2>For next lesson</h2>
+  <div class="card violet">
+    <p class="q">Find the range and the interquartile range of the following set of twelve values: <strong>113, 97, 36, 81, 49, 41, 20, 66, 28, 32, 17, 107</strong>. <span class="marks">[Exercise 3A Q1d]</span></p>
+    <p class="mini">Hint: order first. $n = 12$ — which case?</p>
+  </div>
+  <div class="fragment">
+    <div class="answer">
+      <span class="label">Verified final answer</span>
+      Ordered: 17, 20, 28, 32, 36, 41, 49, 66, 81, 97, 107, 113.<br>
+      Median $Q_2 = \dfrac{41+49}{2} = 45$. Lower half $\to Q_1 = \dfrac{28+32}{2} = 30$. Upper half $\to Q_3 = \dfrac{81+97}{2} = 89$.<br>
+      <strong>Range $= 113 - 17 = 96$</strong> and <strong>IQR $= 89 - 30 = 59$</strong>.
+    </div>
+  </div>
+</section>
+
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="../assets/boot.js"></script>
+</body>
+</html>

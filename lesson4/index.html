@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Lesson 4 — Coded Data (Translation) · 9709 P5 Ch3</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script>
+    window.MathJax = {
+      tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},
+      options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},
+      svg:{fontCache:'global'},
+      startup:{typeset:true, ready:()=>MathJax.startup.defaultReady()}
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- 1. TITLE -->
+<section>
+  <span class="step">LESSON 4 · 35 MIN</span>
+  <h1>Coded Data &mdash; Translation</h1>
+  <hr class="rule">
+  <p style="color:var(--chalk);font-size:1.1em">Working with $\sum(x-a)$ and $\sum(x-a)^2$ instead of raw totals — smaller numbers, same answer.</p>
+  <p class="mini">Cambridge 9709 Paper 5 · Topic 5.1 · Ch 3 §3.4 (coding)</p>
+</section>
+
+<!-- 2. KEY IDEA -->
+<section>
+  <span class="step teal">CORE · THE RULE</span>
+  <h2>Shift every value by the same constant</h2>
+  <p>Let $y = x - a$ where $a$ is any constant. Then:</p>
+  <div class="big-eq teal">
+    $\bar{x} = \bar{y} + a \qquad \text{SD}(x) = \text{SD}(y)$
+  </div>
+  <p style="margin-top:14px">The mean shifts; the <strong>spread does not change</strong>. Adding the same number to every value slides the dataset along the number line without stretching it.</p>
+  <p class="mini">Useful when raw $x$ values are large or awkward — subtract a convenient $a$ first.</p>
+</section>
+
+<!-- 3. WORKED EXAMPLE -->
+<section>
+  <span class="step rose">WORKED · TRANSLATION</span>
+  <h2>Why the SD is unchanged</h2>
+  <div class="two-col">
+    <div>
+      <p>Three friends record values $x$, and compute $y = x-5$:</p>
+      <img class="crop" src="../crops/D8_amber_buti_chen.png" alt="Amber, Buti, Chen coded data">
+      <div class="crop-cap">Cambridge Coursebook §3.4</div>
+    </div>
+    <div>
+      <div class="card rose">
+        <span class="label">Formula on coded data</span>
+        <p style="margin:6px 0">$\text{SD}(x) = \text{SD}(x-a)$</p>
+        <p style="margin:6px 0">$= \sqrt{\dfrac{\sum (x-a)^2}{n} - \left(\dfrac{\sum (x-a)}{n}\right)^2}$</p>
+      </div>
+      <div class="answer">
+        <span class="label">Take-away</span>
+        To find $\text{SD}(x)$ you only need <strong>$\sum(x-a)$</strong> and <strong>$\sum(x-a)^2$</strong> — the constant $a$ never reappears.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. MEAN RECOVERY -->
+<section>
+  <span class="step">PROCEDURE · RECOVERING TOTALS</span>
+  <h2>Getting back to $\bar{x}$ and $\sum x^2$</h2>
+  <p>When the question gives coded totals:</p>
+  <ul class="tight">
+    <li>$\sum x = \sum (x-a) + na$</li>
+    <li>$\bar{x} = \dfrac{\sum(x-a)}{n} + a$</li>
+    <li>$\sum x^2 = \sum(x-a)^2 + 2a\sum(x-a) + na^2$</li>
+  </ul>
+  <p class="mini" style="margin-top:10px">These three identities unlock almost every coded-data exam question. Keep them visible while you work.</p>
+</section>
+
+<!-- 5. CLASSWORK -->
+<section>
+  <span class="step">CLASSWORK · 7 MIN</span>
+  <h2>Try it yourself</h2>
+  <div class="card gold">
+    <p class="q">Twenty readings of $y$ are summarised by the totals $\sum(y-5)^2 = 890$ and $\sum(y-5) = 130$. Find the standard deviation of $y$. <span class="marks">[Exercise 3D Q2]</span></p>
+    <p class="mini">Hint: $\text{SD}(y) = \text{SD}(y-5)$.</p>
+  </div>
+  <div class="fragment">
+    <div class="answer">
+      <span class="label">Verified final answer</span>
+      Let $u = y-5$. Then $n = 20$, $\sum u = 130$, $\sum u^2 = 890$.<br>
+      $\text{Var}(u) = \tfrac{890}{20} - \left(\tfrac{130}{20}\right)^2 = 44.5 - 42.25 = 2.25$.<br>
+      <strong>$\text{SD}(y) = \text{SD}(u) = \sqrt{2.25} = 1.5$</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- 6. ASSIGNMENT -->
+<section>
+  <span class="step violet">ASSIGNMENT · TAKE HOME</span>
+  <h2>For next lesson</h2>
+  <div class="card violet">
+    <p class="q">Exactly 20 years ago, the mean age of a group of boys was 15.7 years, and the sum of the squares of their ages was 16&nbsp;000. If the sum of the squares of their ages has increased by 8224 in this 20-year period, find the number of boys in the group. <span class="marks">[Exercise 3D Q4]</span></p>
+    <p class="mini">Hint: ages now are $x_i + 20$. Expand $\sum(x_i+20)^2$.</p>
+  </div>
+  <div class="fragment">
+    <div class="answer">
+      <span class="label">Verified final answer</span>
+      Let $n$ boys with original ages $x_i$. Then $\sum x_i = 15.7n$ and $\sum x_i^2 = 16\,000$.<br>
+      $\sum (x_i + 20)^2 - \sum x_i^2 = 40\sum x_i + 400 n = 40(15.7n) + 400n = 1028\,n$.<br>
+      Setting this equal to $8224$: $1028\,n = 8224 \Rightarrow \mathbf{n = 8}$.
+    </div>
+  </div>
+</section>
+
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="../assets/boot.js"></script>
+</body>
+</html>

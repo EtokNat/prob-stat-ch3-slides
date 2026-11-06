@@ -1,0 +1,52 @@
+:root{
+  --ink:#0b1020; --ink-2:#121a35; --chalk:#e8ecf6; --muted:#9aa3bf;
+  --gold:#f0b84a; --gold-soft:#f7d383; --teal:#4fd1c5; --teal-soft:#7ee5db;
+  --rose:#ff7a90; --violet:#a78bfa; --emerald:#34d399;
+  --shadow:0 20px 60px rgba(0,0,0,.45);
+}
+.reveal{font-family:'Inter',system-ui,sans-serif;font-weight:600;color:var(--chalk);font-size:30px;letter-spacing:.005em}
+.reveal p,.reveal li{font-weight:600;line-height:1.45}
+.reveal .slides{text-align:left}
+.reveal h1,.reveal h2,.reveal h3,.reveal h4{font-family:'Fraunces',Georgia,serif;font-weight:700;letter-spacing:-.015em;text-transform:none;color:#fff;line-height:1.1;margin-bottom:.4em}
+.reveal h1{font-size:2.4em;font-weight:900}
+.reveal h2{font-size:1.65em}
+.reveal h3{font-size:1.2em}
+.reveal strong{color:#fff;font-weight:800}
+.reveal em{color:var(--gold-soft);font-style:normal;font-weight:700}
+.reveal .slide-background-content{
+  background:
+    radial-gradient(1200px 600px at 20% -10%,rgba(79,209,197,.10),transparent 60%),
+    radial-gradient(900px 500px at 110% 110%,rgba(240,184,74,.10),transparent 60%),
+    linear-gradient(180deg,#0b1020 0%,#0a0f1f 50%,#080c1a 100%)!important;
+}
+.step{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.55em;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(240,184,74,.35);padding:5px 12px;border-radius:100px;margin-bottom:.9em}
+.step.teal{color:var(--teal);border-color:rgba(79,209,197,.35)}
+.step.rose{color:var(--rose);border-color:rgba(255,122,144,.35)}
+.step.violet{color:var(--violet);border-color:rgba(167,139,250,.40)}
+.rule{height:3px;width:72px;background:linear-gradient(90deg,var(--gold),transparent);border:0;margin:10px 0 18px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.two-col.wide-left{grid-template-columns:1.3fr 1fr}
+.two-col.wide-right{grid-template-columns:1fr 1.3fr}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:20px 24px;box-shadow:var(--shadow);backdrop-filter:blur(6px)}
+.card.gold{border-color:rgba(240,184,74,.35);background:linear-gradient(180deg,rgba(240,184,74,.10),rgba(240,184,74,.02))}
+.card.teal{border-color:rgba(79,209,197,.35);background:linear-gradient(180deg,rgba(79,209,197,.10),rgba(79,209,197,.02))}
+.card.rose{border-color:rgba(255,122,144,.35);background:linear-gradient(180deg,rgba(255,122,144,.10),rgba(255,122,144,.02))}
+.card.violet{border-color:rgba(167,139,250,.40);background:linear-gradient(180deg,rgba(167,139,250,.10),rgba(167,139,250,.02))}
+.card h3{margin-top:0}
+.card .label{font-family:'JetBrains Mono',monospace;font-size:.55em;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.card.teal .label{color:var(--teal-soft)}
+.card.rose .label{color:var(--rose)}
+.card.violet .label{color:var(--violet)}
+.big-eq{background:linear-gradient(180deg,rgba(240,184,74,.08),rgba(240,184,74,.02));border:1px solid rgba(240,184,74,.30);border-left:5px solid var(--gold);border-radius:14px;padding:18px 24px;font-size:1.08em;color:#fff}
+.big-eq.teal{background:linear-gradient(180deg,rgba(79,209,197,.08),rgba(79,209,197,.02));border-color:rgba(79,209,197,.30);border-left-color:var(--teal)}
+.answer{background:linear-gradient(180deg,rgba(52,211,153,.10),rgba(52,211,153,.02));border:1px solid rgba(52,211,153,.30);border-left:5px solid var(--emerald);border-radius:14px;padding:16px 22px;color:#fff;margin-top:14px}
+.answer .label{font-family:'JetBrains Mono',monospace;font-size:.55em;letter-spacing:.22em;text-transform:uppercase;color:var(--emerald);margin-bottom:4px;display:block}
+.crop{display:block;max-width:100%;height:auto;border-radius:10px;background:#fff;padding:10px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.crop.narrow{max-width:85%;margin:0 auto}
+.crop-cap{font-family:'JetBrains Mono',monospace;font-size:.5em;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:8px;text-align:center}
+.q{color:#fff;font-weight:700}
+.q .marks{font-family:'JetBrains Mono',monospace;font-size:.75em;color:var(--gold);margin-left:10px}
+.mini{font-size:.78em;color:var(--muted);line-height:1.4}
+ul.tight li{margin:.2em 0}
+.center{text-align:center}
+hr.sep{border:0;border-top:1px dashed rgba(255,255,255,.15);margin:14px 0}

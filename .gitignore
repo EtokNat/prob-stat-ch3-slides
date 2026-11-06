@@ -1,0 +1,5 @@
+source/
+syllabus/
+renders/
+crops/*.py
+crops/q4_zoom*.png

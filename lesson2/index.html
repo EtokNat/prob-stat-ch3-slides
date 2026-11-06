@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Lesson 2 — Cumulative Frequency, Box-plots &amp; Skew · 9709 P5 Ch3</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script>
+    window.MathJax = {
+      tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},
+      options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},
+      svg:{fontCache:'global'},
+      startup:{typeset:true, ready:()=>MathJax.startup.defaultReady()}
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- 1. TITLE -->
+<section>
+  <span class="step">LESSON 2 · 35 MIN</span>
+  <h1>CF Graphs, Box-plots &amp; Skew</h1>
+  <hr class="rule">
+  <p style="color:var(--chalk);font-size:1.1em">Reading quartiles and percentiles from <em>grouped</em> data, and summarising shape in a single picture.</p>
+  <p class="mini">Cambridge 9709 Paper 5 · Topic 5.1 · Ch 3 §3.3</p>
+</section>
+
+<!-- 2. CF GRAPH -->
+<section>
+  <span class="step teal">CORE · CF GRAPHS</span>
+  <h2>Reading quartiles from a CF curve</h2>
+  <div class="two-col wide-right">
+    <div>
+      <p>Plot cumulative frequency against <strong>upper class boundary</strong>. Then read horizontally at:</p>
+      <ul class="tight">
+        <li>$\tfrac{n}{4}$ for $Q_1$</li>
+        <li>$\tfrac{n}{2}$ for the median $Q_2$</li>
+        <li>$\tfrac{3n}{4}$ for $Q_3$</li>
+        <li>$\tfrac{kn}{100}$ for the $k$th percentile</li>
+      </ul>
+      <p class="mini">For grouped data the curve gives <em>estimates</em>, not exact values.</p>
+    </div>
+    <div class="center">
+      <img class="crop" src="../crops/D4_cf_curve.png" alt="CF curve with Q1, Q3, 95th">
+      <div class="crop-cap">Cambridge Coursebook §3.3</div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. BOX-PLOT ANATOMY -->
+<section>
+  <span class="step">CORE · BOX-AND-WHISKER</span>
+  <h2>Anatomy of a box-plot</h2>
+  <p>Five-number summary on one axis: <strong>min · $Q_1$ · $Q_2$ · $Q_3$ · max</strong>. The box spans the IQR; the whiskers reach the extremes.</p>
+  <img class="crop" src="../crops/D5_box_x.png" alt="Generic box plot">
+  <div class="card gold" style="margin-top:12px">
+    <p style="margin:4px 0"><strong>Why it beats a mean + SD snapshot:</strong> you see spread, centre, and asymmetry at a glance, and outliers can be flagged separately.</p>
+  </div>
+</section>
+
+<!-- 4. SKEWNESS -->
+<section>
+  <span class="step rose">CORE · SKEWNESS</span>
+  <h2>Reading skew from the box</h2>
+  <div class="two-col wide-right">
+    <div>
+      <p><strong>Symmetric:</strong> median sits mid-box; whiskers equal.</p>
+      <p><strong>Positive skew:</strong> median closer to $Q_1$; longer upper whisker — a tail of large values.</p>
+      <p><strong>Negative skew:</strong> median closer to $Q_3$; longer lower whisker — a tail of small values.</p>
+      <p class="mini">Compare median position to <em>both</em> the box and the whiskers.</p>
+    </div>
+    <div class="center">
+      <img class="crop" src="../crops/D6_box_y_skew.png" alt="Box plot for y showing skew">
+      <div class="crop-cap">Cambridge Coursebook §3.3</div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. CLASSWORK -->
+<section>
+  <span class="step">CLASSWORK · 7 MIN</span>
+  <h2>Try it yourself</h2>
+  <div class="card gold">
+    <p class="q">The following table shows the cumulative frequencies for values of $x$. <span class="marks">[Exercise 3A Q11]</span></p>
+    <table style="margin:8px auto;border-collapse:collapse;color:#fff">
+      <tr><th style="border:1px solid rgba(255,255,255,.3);padding:6px 14px">$&lt;0$</th><th style="border:1px solid rgba(255,255,255,.3);padding:6px 14px">$&lt;10$</th><th style="border:1px solid rgba(255,255,255,.3);padding:6px 14px">$&lt;15$</th><th style="border:1px solid rgba(255,255,255,.3);padding:6px 14px">$&lt;25$</th><th style="border:1px solid rgba(255,255,255,.3);padding:6px 14px">$&lt;30$</th><th style="border:1px solid rgba(255,255,255,.3);padding:6px 14px">$&lt;40$</th></tr>
+      <tr><td style="border:1px solid rgba(255,255,255,.3);padding:6px 14px;text-align:center">0</td><td style="border:1px solid rgba(255,255,255,.3);padding:6px 14px;text-align:center">12</td><td style="border:1px solid rgba(255,255,255,.3);padding:6px 14px;text-align:center">30</td><td style="border:1px solid rgba(255,255,255,.3);padding:6px 14px;text-align:center">90</td><td style="border:1px solid rgba(255,255,255,.3);padding:6px 14px;text-align:center">102</td><td style="border:1px solid rgba(255,255,255,.3);padding:6px 14px;text-align:center">120</td></tr>
+    </table>
+    <p style="margin:6px 0"><strong>Without</strong> drawing a CF graph, find&nbsp;(a) the interquartile range,&nbsp;(b) the 85th percentile.</p>
+  </div>
+  <div class="fragment">
+    <div class="answer">
+      <span class="label">Verified final answer</span>
+      $n = 120$. $\tfrac{n}{4}=30\Rightarrow Q_1 = 15$; $\tfrac{3n}{4}=90\Rightarrow Q_3 = 25$. $0.85n = 102$, which lands exactly at $x&lt;30$.<br>
+      <strong>IQR $= 25 - 15 = 10$</strong> and <strong>85th percentile $= 30$</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- 6. ASSIGNMENT -->
+<section>
+  <span class="step violet">ASSIGNMENT · TAKE HOME</span>
+  <h2>For next lesson</h2>
+  <div class="card violet">
+    <p class="q">The numbers of fouls made in eight hockey matches and in eight football matches are shown in the back-to-back stem-and-leaf diagram below. <span class="marks">[Exercise 3A Q4a]</span></p>
+    <pre style="font-family:'JetBrains Mono',monospace;color:#fff;text-align:center;font-size:.9em;margin:8px 0">
+Hockey (8) |   | Football (8)    Key: 6 | 1 | 8
+    4 2 1  | 1 | 0               represents 16 fouls
+    9 8 6  | 1 | 8 9 9           in hockey and 18
+      4 1  | 2 | 1 2 3 3         fouls in football</pre>
+    <p style="margin:6px 0">Is it true to say that the numbers of fouls in the two sports are equally varied? Justify with both measures of spread.</p>
+  </div>
+  <div class="fragment">
+    <div class="answer">
+      <span class="label">Verified final answer</span>
+      Hockey: 11, 12, 14, 16, 18, 19, 21, 24 $\Rightarrow Q_1 = 13,\ Q_3 = 20,\ \text{IQR}=7$; range $= 24-11 = 13$.<br>
+      Football: 10, 18, 19, 19, 21, 22, 23, 23 $\Rightarrow Q_1 = 18.5,\ Q_3 = 22.5,\ \text{IQR}=4$; range $= 23-10 = 13$.<br>
+      <strong>Not equally varied</strong> — ranges match (13 each), but hockey's IQR (7) is nearly double football's (4): hockey's middle 50% is more spread out.
+    </div>
+  </div>
+</section>
+
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="../assets/boot.js"></script>
+</body>
+</html>
