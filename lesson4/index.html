@@ -33,53 +33,50 @@
   <p class="mini">Cambridge 9709 Paper 5 · Topic 5.1 · Ch 3 §3.4 (coding)</p>
 </section>
 
-<!-- 2. KEY IDEA -->
+<!-- 2. DEFINITION -->
 <section>
-  <span class="step teal">CORE · THE RULE</span>
-  <h2>Shift every value by the same constant</h2>
-  <p>Let $y = x - a$ where $a$ is any constant. Then:</p>
-  <div class="big-eq teal">
-    $\bar{x} = \bar{y} + a \qquad \text{SD}(x) = \text{SD}(y)$
+  <span class="step teal">DEFINITION</span>
+  <h2>What is &ldquo;coded&rdquo; data?</h2>
+  <p><strong>Coding</strong> is replacing each raw value $x$ with a simpler, transformed value — here, by subtracting the same constant $a$ from every value: $y = x - a$.</p>
+  <p>Used when the raw numbers are large or awkward (e.g. masses in grams near 500 g) so the arithmetic in $\sum x$ and $\sum x^2$ is quicker and less error-prone.</p>
+  <div class="card gold" style="margin-top:12px">
+    <p style="margin:4px 0"><strong>Geometric meaning.</strong> Subtracting $a$ <em>shifts</em> every point along the number line by the same amount — it slides the dataset but does not stretch it.</p>
   </div>
-  <p style="margin-top:14px">The mean shifts; the <strong>spread does not change</strong>. Adding the same number to every value slides the dataset along the number line without stretching it.</p>
-  <p class="mini">Useful when raw $x$ values are large or awkward — subtract a convenient $a$ first.</p>
 </section>
 
-<!-- 3. WORKED EXAMPLE -->
+<!-- 3. THE RULE -->
 <section>
-  <span class="step rose">WORKED · TRANSLATION</span>
-  <h2>Why the SD is unchanged</h2>
+  <span class="step rose">CORE · THE RULE</span>
+  <h2>Shift every value by the same constant</h2>
   <div class="two-col">
     <div>
-      <p>Three friends record values $x$, and compute $y = x-5$:</p>
-      <img class="crop" src="../crops/D8_amber_buti_chen.png" alt="Amber, Buti, Chen coded data">
-      <div class="crop-cap">Cambridge Coursebook §3.4</div>
+      <p>Let $y = x - a$ where $a$ is any constant. Then:</p>
+      <div class="big-eq teal">
+        $\bar{x} = \bar{y} + a \qquad \text{SD}(x) = \text{SD}(y)$
+      </div>
+      <p style="margin-top:14px">The mean shifts; the <strong>spread does not change</strong>.</p>
     </div>
-    <div>
-      <div class="card rose">
-        <span class="label">Formula on coded data</span>
-        <p style="margin:6px 0">$\text{SD}(x) = \text{SD}(x-a)$</p>
-        <p style="margin:6px 0">$= \sqrt{\dfrac{\sum (x-a)^2}{n} - \left(\dfrac{\sum (x-a)}{n}\right)^2}$</p>
-      </div>
-      <div class="answer">
-        <span class="label">Take-away</span>
-        To find $\text{SD}(x)$ you only need <strong>$\sum(x-a)$</strong> and <strong>$\sum(x-a)^2$</strong> — the constant $a$ never reappears.
-      </div>
+    <div class="center">
+      <img class="crop" src="../crops/D8_amber_buti_chen.png" alt="Amber, Buti, Chen coded data">
+      <div class="crop-cap">Cambridge §3.4 — three friends&#39; marks: $x$, $x-1$, $x+3$. Same spread, shifted means.</div>
     </div>
   </div>
 </section>
 
-<!-- 4. MEAN RECOVERY -->
+<!-- 4. MEAN &amp; SUM-OF-SQUARES RECOVERY -->
 <section>
   <span class="step">PROCEDURE · RECOVERING TOTALS</span>
   <h2>Getting back to $\bar{x}$ and $\sum x^2$</h2>
-  <p>When the question gives coded totals:</p>
+  <p>When the question gives coded totals, use:</p>
   <ul class="tight">
     <li>$\sum x = \sum (x-a) + na$</li>
     <li>$\bar{x} = \dfrac{\sum(x-a)}{n} + a$</li>
     <li>$\sum x^2 = \sum(x-a)^2 + 2a\sum(x-a) + na^2$</li>
   </ul>
-  <p class="mini" style="margin-top:10px">These three identities unlock almost every coded-data exam question. Keep them visible while you work.</p>
+  <div class="big-eq teal" style="margin-top:10px">
+    $\text{SD}(x) = \sqrt{\dfrac{\sum (x-a)^2}{n} - \left(\dfrac{\sum (x-a)}{n}\right)^2}$
+  </div>
+  <p class="mini" style="margin-top:10px">These identities unlock almost every coded-data exam question. Keep them visible while you work.</p>
 </section>
 
 <!-- 5. CLASSWORK -->
@@ -90,13 +87,11 @@
     <p class="q">Twenty readings of $y$ are summarised by the totals $\sum(y-5)^2 = 890$ and $\sum(y-5) = 130$. Find the standard deviation of $y$. <span class="marks">[Exercise 3D Q2]</span></p>
     <p class="mini">Hint: $\text{SD}(y) = \text{SD}(y-5)$.</p>
   </div>
-  <div class="fragment">
-    <div class="answer">
-      <span class="label">Verified final answer</span>
-      Let $u = y-5$. Then $n = 20$, $\sum u = 130$, $\sum u^2 = 890$.<br>
-      $\text{Var}(u) = \tfrac{890}{20} - \left(\tfrac{130}{20}\right)^2 = 44.5 - 42.25 = 2.25$.<br>
-      <strong>$\text{SD}(y) = \text{SD}(u) = \sqrt{2.25} = 1.5$</strong>.
-    </div>
+  <div class="answer">
+    <span class="label">Verified final answer</span>
+    Let $u = y-5$. Then $n = 20$, $\sum u = 130$, $\sum u^2 = 890$.<br>
+    $\text{Var}(u) = \tfrac{890}{20} - \left(\tfrac{130}{20}\right)^2 = 44.5 - 42.25 = 2.25$.<br>
+    <strong>$\text{SD}(y) = \text{SD}(u) = \sqrt{2.25} = 1.5$</strong>.
   </div>
 </section>
 
@@ -108,13 +103,11 @@
     <p class="q">Exactly 20 years ago, the mean age of a group of boys was 15.7 years, and the sum of the squares of their ages was 16&nbsp;000. If the sum of the squares of their ages has increased by 8224 in this 20-year period, find the number of boys in the group. <span class="marks">[Exercise 3D Q4]</span></p>
     <p class="mini">Hint: ages now are $x_i + 20$. Expand $\sum(x_i+20)^2$.</p>
   </div>
-  <div class="fragment">
-    <div class="answer">
-      <span class="label">Verified final answer</span>
-      Let $n$ boys with original ages $x_i$. Then $\sum x_i = 15.7n$ and $\sum x_i^2 = 16\,000$.<br>
-      $\sum (x_i + 20)^2 - \sum x_i^2 = 40\sum x_i + 400 n = 40(15.7n) + 400n = 1028\,n$.<br>
-      Setting this equal to $8224$: $1028\,n = 8224 \Rightarrow \mathbf{n = 8}$.
-    </div>
+  <div class="answer">
+    <span class="label">Verified final answer</span>
+    Let $n$ boys with original ages $x_i$. Then $\sum x_i = 15.7\,n$ and $\sum x_i^2 = 16\,000$.<br>
+    $\sum (x_i + 20)^2 - \sum x_i^2 = 40\sum x_i + 400 n = 40(15.7\,n) + 400n = 1028\,n$.<br>
+    Setting this equal to $8224$: $1028\,n = 8224 \Rightarrow \mathbf{n = 8}$.
   </div>
 </section>
 

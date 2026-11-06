@@ -33,20 +33,23 @@
   <p class="mini">Cambridge 9709 Paper 5 · Topic 5.1 · Ch 3 §3.4</p>
 </section>
 
-<!-- 2. DEVIATION IDEA -->
+<!-- 2. DEVIATION -->
 <section>
-  <span class="step teal">CORE · DEVIATION</span>
-  <h2>Measuring spread about the mean</h2>
+  <span class="step teal">CORE DEFINITIONS</span>
+  <h2>Deviation, variance, SD</h2>
   <div class="two-col wide-right">
     <div>
-      <p>Each value has a <strong>deviation</strong> $x_i - \bar{x}$ from the mean. Their sum is always zero, so we <em>square</em> before averaging.</p>
-      <div class="big-eq teal" style="margin-top:12px">
+      <ul class="tight">
+        <li><strong>Deviation</strong> of a value: $x_i - \bar{x}$ — its signed distance from the mean.</li>
+        <li><strong>Variance</strong>: the <em>mean of the squared deviations</em>. Squaring removes the sign so positive and negative deviations don&#39;t cancel.</li>
+        <li><strong>Standard deviation (SD)</strong>: $\sqrt{\text{variance}}$ — back in the original units of $x$.</li>
+      </ul>
+      <div class="big-eq teal" style="margin-top:10px">
         $\text{Var}(x) = \dfrac{\sum (x - \bar{x})^2}{n}$
       </div>
-      <p style="margin-top:12px"><strong>Standard deviation</strong> = $\sqrt{\text{Variance}}$ — back in the original units.</p>
     </div>
     <div class="center">
-      <img class="crop" src="../crops/D7_deviation_line.png" alt="Deviation line illustration">
+      <img class="crop" src="../crops/D7_deviation_line.png" alt="Deviation number-line">
       <div class="crop-cap">Cambridge Coursebook §3.4</div>
     </div>
   </div>
@@ -64,10 +67,10 @@
   <div class="big-eq teal">
     $\text{SD}(x) = \sqrt{\dfrac{\sum x^2 f}{\sum f} - \bar{x}^{\,2}} \qquad \bar{x} = \dfrac{\sum xf}{\sum f}$
   </div>
-  <p class="mini" style="margin-top:10px">Always use the <em>exact</em> mean inside $\bar{x}^2$ — a rounded mean can swing the SD by ~15%.</p>
+  <p class="mini" style="margin-top:10px">Always use the <em>exact</em> mean inside $\bar{x}^2$ — a rounded mean can swing the SD by $\sim 15\%$.</p>
 </section>
 
-<!-- 4. WORKED EXAMPLE 3.7 -->
+<!-- 4. WORKED 3.7 -->
 <section>
   <span class="step rose">WORKED · FREQUENCY TABLE</span>
   <h2>Worked example 3.7</h2>
@@ -99,14 +102,12 @@
     <p class="q">Find the mean and the standard deviation for the set of numbers: <strong>27, 43, 29, 34, 53, 37, 19, 58</strong>. <span class="marks">[Exercise 3B Q1a]</span></p>
     <p class="mini">Hint: $n=8$. Compute $\sum x$ and $\sum x^2$ first.</p>
   </div>
-  <div class="fragment">
-    <div class="answer">
-      <span class="label">Verified final answer</span>
-      $\sum x = 300 \Rightarrow \bar{x} = \tfrac{300}{8} = 37.5$.<br>
-      $\sum x^2 = 729+1849+841+1156+2809+1369+361+3364 = 12\,478$.<br>
-      $\text{Var} = \tfrac{12478}{8} - 37.5^2 = 1559.75 - 1406.25 = 153.5$.<br>
-      <strong>Mean $= 37.5$</strong> and <strong>SD $= \sqrt{153.5} \approx 12.39$</strong> (2 d.p.).
-    </div>
+  <div class="answer">
+    <span class="label">Verified final answer</span>
+    $\sum x = 300 \Rightarrow \bar{x} = \tfrac{300}{8} = 37.5$.<br>
+    $\sum x^2 = 729+1849+841+1156+2809+1369+361+3364 = 12\,478$.<br>
+    $\text{Var} = \tfrac{12478}{8} - 37.5^2 = 1559.75 - 1406.25 = 153.5$.<br>
+    <strong>Mean $= 37.5$</strong> and <strong>SD $= \sqrt{153.5} \approx 12.39$</strong> (2 d.p.).
   </div>
 </section>
 
@@ -115,20 +116,18 @@
   <span class="step violet">ASSIGNMENT · TAKE HOME</span>
   <h2>For next lesson</h2>
   <div class="card violet">
-    <p class="q">The following table shows the number of pets owned by each of 35 families. Find the mean and variance of the number of pets. <span class="marks">[Exercise 3B Q3]</span></p>
+    <p class="q">The table shows the number of pets owned by each of 35 families. Find the mean and variance of the number of pets. <span class="marks">[Exercise 3B Q3]</span></p>
     <table style="margin:8px auto;border-collapse:collapse;color:#fff">
       <tr><th style="border:1px solid rgba(255,255,255,.3);padding:4px 14px">No. pets</th><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">0</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">1</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">2</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">3</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">4</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">5</td></tr>
       <tr><th style="border:1px solid rgba(255,255,255,.3);padding:4px 14px">No. families</th><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">6</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">12</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">9</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">4</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">3</td><td style="border:1px solid rgba(255,255,255,.3);padding:4px 14px;text-align:center">1</td></tr>
     </table>
   </div>
-  <div class="fragment">
-    <div class="answer">
-      <span class="label">Verified final answer</span>
-      $\sum f = 35$; $\sum xf = 0+12+18+12+12+5 = 59$; $\sum x^2 f = 0+12+36+36+48+25 = 157$.<br>
-      $\bar{x} = \tfrac{59}{35} \approx 1.69$ pets.<br>
-      $\text{Var} = \tfrac{157}{35} - \left(\tfrac{59}{35}\right)^2 \approx 4.486 - 2.841 \approx 1.64$.<br>
-      <strong>Mean $\approx 1.69$</strong> and <strong>Variance $\approx 1.64$</strong>.
-    </div>
+  <div class="answer">
+    <span class="label">Verified final answer</span>
+    $\sum f = 35$;&nbsp; $\sum xf = 0+12+18+12+12+5 = 59$;&nbsp; $\sum x^2 f = 0+12+36+36+48+25 = 157$.<br>
+    $\bar{x} = \tfrac{59}{35} \approx 1.69$ pets.<br>
+    $\text{Var} = \tfrac{157}{35} - \left(\tfrac{59}{35}\right)^2 \approx 4.486 - 2.841 \approx 1.64$.<br>
+    <strong>Mean $\approx 1.69$</strong> and <strong>Variance $\approx 1.64$</strong>.
   </div>
 </section>
 
