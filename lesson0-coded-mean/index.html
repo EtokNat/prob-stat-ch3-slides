@@ -11,6 +11,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    .trap{border-left:4px solid var(--rose);background:rgba(255,122,144,.08);padding:10px 14px;border-radius:6px;margin:8px 0}
+    .trap strong{color:var(--rose)}
+    .step-row{display:flex;gap:12px;align-items:flex-start;margin:6px 0}
+    .step-row .n{font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:.9em;flex:0 0 auto;padding-top:2px}
+    .mantra{font-family:'JetBrains Mono',monospace;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;font-size:.85em}
+  </style>
   <script>
     window.MathJax = {
       tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},
@@ -29,95 +36,184 @@
   <span class="step">PREREQUISITE · 35 MIN</span>
   <h1>Coded Data &mdash; The Mean</h1>
   <hr class="rule">
-  <p style="color:var(--chalk);font-size:1.1em">Before we tackle spread in Chapter 3, master how coding affects the <em>mean</em>. One idea — shrink the numbers, do the arithmetic, undo the code — unlocks every coded-totals question for the rest of the paper.</p>
-  <p class="mini">Cambridge 9709 Paper 5 · Topic 5.1 · Ch 2 &sect;2.3 (Coded data)</p>
+  <p style="color:var(--chalk);font-size:1.15em">One idea unlocks every coded-totals question for the rest of Paper 5:</p>
+  <p class="mantra" style="font-size:1.1em;margin-top:14px">code &nbsp;&rarr;&nbsp; compute &nbsp;&rarr;&nbsp; decode</p>
+  <p class="mini" style="margin-top:22px">Cambridge 9709 Paper 5 · Topic 5.1 · Ch 2 &sect;2.3 (Coded data)</p>
 </section>
 
 <!-- 2. WHY CODE? -->
 <section>
   <span class="step teal">MOTIVATION</span>
   <h2>Why code at all?</h2>
-  <p>Raw data can be <strong>large or awkward</strong> — long multiplications, easy slips. Coding replaces each value $x$ with a simpler $x - b$ by subtracting a convenient constant.</p>
-  <div class="card gold" style="margin-top:10px">
-    <p style="margin:4px 0"><strong>Textbook example (Ch 2 &sect;2.3):</strong> find the mean of $101,\ 103,\ 104,\ 109,\ 113$.</p>
-    <p style="margin:4px 0">Subtract $100$ from each &rarr; code is $1,\ 3,\ 4,\ 9,\ 13$.</p>
-    <p style="margin:4px 0">Mean of coded $= \dfrac{1+3+4+9+13}{5} = 6$.&nbsp; So $\bar{x} = 6 + 100 = \mathbf{106}$.</p>
+  <p>Find the mean of&nbsp; $101,\ 103,\ 104,\ 109,\ 113$.</p>
+  <div class="fragment fade-in">
+    <p style="margin-top:10px"><strong>Trick.</strong> Subtract $100$ from every value:</p>
+    <p style="text-align:center;font-size:1.15em;color:var(--gold)">$1,\ 3,\ 4,\ 9,\ 13$</p>
   </div>
-  <p class="mini" style="margin-top:10px">Golden rule: <strong>code &rarr; compute &rarr; decode</strong>. Never leave the answer in coded form.</p>
+  <div class="fragment fade-in">
+    <p>Mean of the <em>coded</em> values $= \dfrac{1+3+4+9+13}{5} = 6$.</p>
+  </div>
+  <div class="fragment fade-in-then-semi-out">
+    <p>Add $100$ back to decode: $\ \bar{x} = 6 + 100 = \mathbf{106}$.</p>
+  </div>
+  <div class="fragment fade-in">
+    <div class="card gold" style="margin-top:14px">
+      <p style="margin:4px 0" class="mantra">The golden rule</p>
+      <p style="margin:4px 0;font-size:1.05em"><strong>Code</strong> &rarr; shrink the arithmetic. &nbsp;<strong>Compute</strong> &rarr; mean of the small numbers. &nbsp;<strong>Decode</strong> &rarr; reverse what you did.</p>
+    </div>
+  </div>
 </section>
 
 <!-- 3. RULE 1 - ADDITION CODING -->
 <section>
   <span class="step rose">CORE · ADDITION CODING</span>
-  <h2>Shift by a constant $b$</h2>
-  <p>Let $y = x - b$. Then every value moves by $-b$ along the number line, so the mean moves by $-b$ too.</p>
-  <div class="big-eq teal">
-    $\bar{x} = \dfrac{\sum(x-b)}{n} + b \qquad \bar{x} = \dfrac{\sum(x-b)f}{\sum f} + b$
+  <h2>The shift: $y = x - b$</h2>
+  <p>Every value slides by $-b$ on the number line &rarr; so does the mean.</p>
+  <div class="fragment fade-in">
+    <p style="margin-top:10px"><strong>Algebra you&rsquo;ll keep reusing:</strong></p>
+    <div class="big-eq teal">
+      $\sum(x-b) = \sum x - nb$
+    </div>
+    <p class="mini">(There are $n$ copies of $b$ being subtracted — once per data value.)</p>
   </div>
-  <p style="margin-top:10px"><strong>Key Point 2.3 (summary):</strong> $\ \bar{x} = \text{mean}(x - b) + b$.</p>
-  <div class="card gold" style="margin-top:10px">
-    <p style="margin:4px 0"><strong>Worked 2.10 (coded frequency table).</strong> 40 values of $x$ coded as $x-3$ into classes $0\text{--}18,\ 18\text{--}24,\ 24\text{--}32$ with frequencies $9,\ 13,\ 18$.</p>
-    <p style="margin:4px 0">Using mid-values $9,\ 21,\ 28$: $\ \bar{x} = \dfrac{9\cdot 9 + 21\cdot 13 + 28\cdot 18}{40} + 3 = \mathbf{24.45}$.</p>
+  <div class="fragment fade-in">
+    <div class="big-eq" style="margin-top:12px">
+      $\bar{x} = \dfrac{\sum(x-b)}{n} + b \qquad \bar{x} = \dfrac{\sum(x-b)f}{\sum f} + b$
+    </div>
+    <p class="mini">Ungrouped on the left · grouped (frequency table) on the right &mdash; <strong>Key Point 2.3</strong>.</p>
+  </div>
+  <div class="fragment fade-in">
+    <div class="card gold" style="margin-top:10px">
+      <span class="label">Worked 2.10 &mdash; grouped</span>
+      <p style="margin:6px 0">Forty values of $x$ coded as $x-3$ into classes $0\text{--}18,\ 18\text{--}24,\ 24\text{--}32$ with frequencies $9,\ 13,\ 18$.</p>
+      <p style="margin:6px 0">Mid-values $9,\ 21,\ 28 \Rightarrow \bar{x} = \dfrac{9{\cdot}9 + 21{\cdot}13 + 28{\cdot}18}{40} + 3 = \mathbf{24.45}$.</p>
+    </div>
   </div>
 </section>
 
 <!-- 4. RULE 2 - MULTIPLICATION CODING -->
 <section>
-  <span class="step">CORE · MULTIPLICATION CODING</span>
-  <h2>Scale <em>and</em> shift: $y = ax - b$</h2>
-  <p>If the code also multiplies by $a$ (e.g.&nbsp;unit conversion, percentage), undo in reverse order: <strong>add back $b$ first, then divide by $a$</strong>.</p>
-  <div class="big-eq teal">
-    $\bar{x} = \dfrac{1}{a}\left[\dfrac{\sum(ax-b)}{n} + b\right]$
+  <span class="step">CORE · SCALE + SHIFT</span>
+  <h2>When the code multiplies too: $y = ax - b$</h2>
+  <p>Example: converting units, scaling percentages, or $y = 2x - 3$.</p>
+  <div class="fragment highlight-red">
+    <p style="margin-top:12px;font-size:1.1em"><strong>Undo in <em>reverse</em> order:</strong> add back $b$ <em>first</em>, then divide by $a$.</p>
   </div>
-  <p style="margin-top:10px"><strong>Key Point 2.4 (summary):</strong> $\ \bar{x} = \dfrac{1}{a}\bigl[\text{mean}(ax-b) + b\bigr]$.</p>
-  <div class="card gold" style="margin-top:10px">
-    <p style="margin:4px 0"><strong>Worked 2.12.</strong> For 20 values of $x$ with $\sum(2x-3) = 104$, find $\bar{x}$.</p>
-    <p style="margin:4px 0">Mean of coded $= \dfrac{104}{20} = 5.2$, so $2\bar{x} - 3 = 5.2 \Rightarrow 2\bar{x} = 8.2 \Rightarrow \bar{x} = \mathbf{4.1}$.</p>
+  <div class="fragment fade-in">
+    <div class="big-eq teal" style="margin-top:10px">
+      $\bar{x} = \dfrac{1}{a}\left[\dfrac{\sum(ax-b)}{n} + b\right]$
+    </div>
+    <p class="mini">Key Point 2.4. Same rule: code &rarr; compute &rarr; decode &mdash; just two undo-steps instead of one.</p>
+  </div>
+  <div class="fragment fade-in">
+    <div class="card gold" style="margin-top:10px">
+      <span class="label">Worked 2.12</span>
+      <p style="margin:6px 0">For 20 values of $x$ with $\sum(2x-3) = 104$, find $\bar{x}$.</p>
+      <div class="step-row"><span class="n">1</span><span>Mean of coded $= \dfrac{104}{20} = 5.2$.</span></div>
+      <div class="step-row"><span class="n">2</span><span>So $2\bar{x} - 3 = 5.2$.</span></div>
+      <div class="step-row"><span class="n">3</span><span><em>Add 3</em> first: $2\bar{x} = 8.2$.</span></div>
+      <div class="step-row"><span class="n">4</span><span>Then <em>divide by 2</em>: $\bar{x} = \mathbf{4.1}$.</span></div>
+    </div>
   </div>
 </section>
 
 <!-- 5. COMBINING TWO DATASETS -->
 <section>
   <span class="step violet">CORE · COMBINING GROUPS</span>
-  <h2>Two coded datasets, one combined mean</h2>
-  <p>Decode each $\sum$ back to $\sum x$ and $\sum y$ <em>first</em>, then combine. Never average the two coded means directly.</p>
-  <div class="card rose" style="margin-top:8px">
-    <p style="margin:4px 0"><strong>Worked 2.9.</strong> 10 boys satisfy $\sum(b-5) = 127$; 15 girls satisfy $\sum(g+5) = 351$.</p>
-    <p style="margin:4px 0">Decode: $\sum b = 127 + 10(5) = 177$; $\ \sum g = 351 - 15(5) = 276$.</p>
-    <p style="margin:4px 0">Boys' mean $= 17.7$ yr, girls' mean $= 18.4$ yr.</p>
-    <p style="margin:4px 0">Combined mean $= \dfrac{177 + 276}{10 + 15} = \dfrac{453}{25} = \mathbf{18.12}\ \text{yr}$.</p>
+  <h2>Two coded datasets &rarr; one combined mean</h2>
+  <p><strong>Decode each $\sum$ back to raw $\sum x$ and $\sum y$ first.</strong> Never average the two coded means directly.</p>
+  <div class="fragment fade-in">
+    <div class="card rose" style="margin-top:10px">
+      <span class="label">Worked 2.9 &mdash; boys &amp; girls</span>
+      <p style="margin:6px 0">10 boys: $\sum(b - 5) = 127$. &nbsp; 15 girls: $\sum(g + 5) = 351$. Find the combined mean age.</p>
+    </div>
   </div>
-  <p class="mini" style="margin-top:10px">This is the exact trick Ch 3 &sect;3.3 reuses for <em>combined variance</em> — only with $\sum x^2$ instead of $\sum x$.</p>
+  <div class="fragment fade-in">
+    <div class="step-row"><span class="n">1</span><span>Decode boys: $\sum b = 127 + 10(5) = 177 \Rightarrow \bar{b} = 17.7$.</span></div>
+  </div>
+  <div class="fragment fade-in">
+    <div class="step-row"><span class="n">2</span><span>Decode girls: $\sum g = 351 - 15(5) = 276 \Rightarrow \bar{g} = 18.4$.</span></div>
+    <p class="mini" style="margin-left:36px">Watch the sign: $\sum(g+5) = \sum g + 5n$, so decoding <em>subtracts</em> $5n$.</p>
+  </div>
+  <div class="fragment fade-in">
+    <div class="step-row"><span class="n">3</span><span>Combine: $\bar{\text{all}} = \dfrac{177 + 276}{10 + 15} = \dfrac{453}{25} = \mathbf{18.12}\ \text{yr}$.</span></div>
+  </div>
+  <div class="fragment fade-in">
+    <p class="mini" style="margin-top:14px;color:var(--teal)">This exact pattern reappears in Ch 3 &sect;3.3 &mdash; only with $\sum x^2$ instead of $\sum x$ to combine variances.</p>
+  </div>
 </section>
 
-<!-- 6. CLASSWORK -->
+<!-- 6. EXAM TWISTS -->
+<section>
+  <span class="step rose">EXAM-PROOFING</span>
+  <h2>How examiners twist this</h2>
+  <p class="mini">Four mutations. Spot the pattern, apply the rule, win the mark.</p>
+  <div class="fragment fade-in">
+    <div class="trap">
+      <strong>Twist 1 &mdash; sign of the constant.</strong> If given $\sum(x+7) = 420$, the &ldquo;$+7$&rdquo; means decoding <em>subtracts</em> $7n$: $\sum x = 420 - 7n$. If the sign is &ldquo;$-7$&rdquo;, you <em>add</em> $7n$. <em>Always expand the bracket before you solve.</em>
+    </div>
+  </div>
+  <div class="fragment fade-in">
+    <div class="trap">
+      <strong>Twist 2 &mdash; different constants in two groups.</strong> E.g. one dataset coded $(x-10)$, another $(y+5)$. Decode each to raw $\sum x$, $\sum y$ <em>separately</em>, then combine. Mixing codes mid-calculation is the #1 wrong answer.
+    </div>
+  </div>
+  <div class="fragment fade-in">
+    <div class="trap">
+      <strong>Twist 3 &mdash; solve for $n$ or $b$.</strong> Same identity, rearranged: from $\sum(x-b) = \sum x - nb$ and a given $\bar{x}$, isolate the unknown. The algebra is the whole question.
+    </div>
+  </div>
+  <div class="fragment fade-in">
+    <div class="trap">
+      <strong>Twist 4 &mdash; &ldquo;mean of coded&rdquo; vs &ldquo;$\sum$ of coded&rdquo;.</strong> Read carefully. <em>Mean of coded $= \sum(x-b)/n$</em> (already divided). <em>$\sum(x-b)$</em> is the raw total (not divided). Different starting points &mdash; different arithmetic.
+    </div>
+  </div>
+</section>
+
+<!-- 7. CLASSWORK -->
 <section>
   <span class="step">CLASSWORK · 7 MIN</span>
   <h2>Try it yourself</h2>
   <div class="card gold">
     <p class="q">Twenty-five values of $z$ are such that $\sum(z - 7) = 275$. Find $\bar{z}$. <span class="marks">[Exercise 2C Q2]</span></p>
-    <p class="mini">Hint: addition coding — apply Key Point 2.3.</p>
+    <p class="mini">Hint: Twist 1 &mdash; what&rsquo;s the sign? Then apply Key Point 2.3.</p>
   </div>
   <div class="answer">
     <span class="label">Verified final answer</span>
-    $\bar{z} = \dfrac{\sum(z-7)}{n} + 7 = \dfrac{275}{25} + 7 = 11 + 7$.<br>
-    <strong>$\bar{z} = 18$</strong>.
+    <div class="fragment fade-in">
+      <div class="step-row"><span class="n">1</span><span>Mean of coded $= \dfrac{275}{25} = 11$.</span></div>
+    </div>
+    <div class="fragment fade-in">
+      <div class="step-row"><span class="n">2</span><span>Decode: add $7$ back &rarr; $\bar{z} = 11 + 7$.</span></div>
+    </div>
+    <div class="fragment fade-in">
+      <p style="margin:8px 0 0"><strong>$\bar{z} = 18$</strong>.</p>
+    </div>
   </div>
 </section>
 
-<!-- 7. ASSIGNMENT -->
+<!-- 8. ASSIGNMENT -->
 <section>
   <span class="step violet">ASSIGNMENT · TAKE HOME</span>
   <h2>For next lesson</h2>
   <div class="card violet">
     <p class="q">A dataset of 20 values is denoted by $x$ where $\sum(x - 1) = 58$. Another dataset of 30 values is denoted by $y$ where $\sum(y - 2) = 36$. Find the mean of the 50 values of $x$ and $y$ combined. <span class="marks">[Exercise 2C Q10]</span></p>
-    <p class="mini">Hint: decode each sum first, then combine (Worked 2.9 pattern).</p>
+    <p class="mini">Hint: Twist 2 &mdash; different constants. Decode each separately before combining.</p>
   </div>
   <div class="answer">
     <span class="label">Verified final answer</span>
-    Decode: $\sum x = 58 + 20(1) = 78$; $\ \sum y = 36 + 30(2) = 96$.<br>
-    Combined mean $= \dfrac{\sum x + \sum y}{20 + 30} = \dfrac{78 + 96}{50} = \dfrac{174}{50}$.<br>
-    <strong>Mean $= 3.48$</strong>.
+    <div class="fragment fade-in">
+      <div class="step-row"><span class="n">1</span><span>Decode $x$: $\sum x = 58 + 20(1) = 78$.</span></div>
+    </div>
+    <div class="fragment fade-in">
+      <div class="step-row"><span class="n">2</span><span>Decode $y$: $\sum y = 36 + 30(2) = 96$.</span></div>
+    </div>
+    <div class="fragment fade-in">
+      <div class="step-row"><span class="n">3</span><span>Combine: $\bar{\text{all}} = \dfrac{78 + 96}{20 + 30} = \dfrac{174}{50}$.</span></div>
+    </div>
+    <div class="fragment fade-in">
+      <p style="margin:8px 0 0"><strong>Mean $= 3.48$</strong>.</p>
+    </div>
   </div>
 </section>
 
