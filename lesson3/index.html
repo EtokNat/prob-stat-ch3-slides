@@ -14,6 +14,7 @@
   <script>
     window.MathJax = {
       tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},
+      chtml:{scale:1.12,mtextInheritFont:true},
       options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},
       svg:{fontCache:'global'},
       startup:{typeset:true, ready:()=>MathJax.startup.defaultReady()}
