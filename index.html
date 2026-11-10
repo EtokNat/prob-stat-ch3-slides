@@ -9,35 +9,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --ink:#0b1020; --chalk:#e8ecf6; --muted:#9aa3bf;
-      --gold:#f0b84a; --teal:#4fd1c5; --rose:#ff7a90; --violet:#a78bfa; --emerald:#34d399;
+      --ink:#0b1020; --chalk:#f4f6fc; --muted:#c7cde0;
+      --gold:#ffc24d; --teal:#5fe5d6; --rose:#ff92a6; --violet:#b9a3ff; --emerald:#4eeba8;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--ink);color:var(--chalk);font-family:'Inter',system-ui,sans-serif;min-height:100vh}
+    html,body{margin:0;padding:0;background:var(--ink);color:var(--chalk);font-family:'Inter',system-ui,sans-serif;min-height:100vh;font-size:20px;font-weight:700}
     body{
       background:
-        radial-gradient(1200px 600px at 20% -10%,rgba(79,209,197,.10),transparent 60%),
-        radial-gradient(900px 500px at 110% 110%,rgba(240,184,74,.10),transparent 60%),
+        radial-gradient(1200px 600px at 20% -10%,rgba(95,229,214,.12),transparent 60%),
+        radial-gradient(900px 500px at 110% 110%,rgba(255,194,77,.12),transparent 60%),
         linear-gradient(180deg,#0b1020 0%,#0a0f1f 50%,#080c1a 100%);
     }
-    .wrap{max-width:1100px;margin:0 auto;padding:60px 28px 80px}
-    .eyebrow{font-family:'JetBrains Mono',monospace;font-size:.75em;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(240,184,74,.35);padding:5px 12px;border-radius:100px;display:inline-block;margin-bottom:18px}
-    h1{font-family:'Fraunces',Georgia,serif;font-size:3.2em;line-height:1.05;font-weight:900;margin:0 0 .25em;color:#fff;letter-spacing:-.015em}
-    .sub{color:var(--muted);font-size:1.1em;max-width:720px;line-height:1.5;margin-bottom:42px}
-    .rule{height:3px;width:72px;background:linear-gradient(90deg,var(--gold),transparent);border:0;margin:14px 0 22px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:10px}
-    a.card{text-decoration:none;color:inherit;display:block;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:26px 24px;box-shadow:0 20px 60px rgba(0,0,0,.45);transition:transform .18s ease, border-color .18s ease, background .18s ease}
-    a.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.3);background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.025))}
-    .card .num{font-family:'JetBrains Mono',monospace;font-size:.7em;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px}
+    .wrap{max-width:1200px;margin:0 auto;padding:60px 28px 80px}
+    .eyebrow{font-family:'JetBrains Mono',monospace;font-size:.85em;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border:2px solid rgba(255,194,77,.55);padding:7px 14px;border-radius:100px;display:inline-block;margin-bottom:20px}
+    h1{font-family:'Fraunces',Georgia,serif;font-size:3.6em;line-height:1.05;font-weight:900;margin:0 0 .25em;color:#fff;letter-spacing:-.015em}
+    .sub{color:var(--chalk);font-size:1.25em;font-weight:700;max-width:820px;line-height:1.5;margin-bottom:42px}
+    .sub em{color:var(--gold);font-style:normal;font-weight:800}
+    .rule{height:4px;width:96px;background:linear-gradient(90deg,var(--gold),transparent);border:0;margin:14px 0 22px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px;margin-top:10px}
+    a.card{text-decoration:none;color:inherit;display:block;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:2px solid rgba(255,255,255,.22);border-radius:18px;padding:28px 26px;box-shadow:0 20px 60px rgba(0,0,0,.55);transition:transform .18s ease, border-color .18s ease, background .18s ease}
+    a.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.45);background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.035))}
+    .card .num{font-family:'JetBrains Mono',monospace;font-size:.82em;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px}
     .card.teal .num{color:var(--teal)} .card.rose .num{color:var(--rose)} .card.violet .num{color:var(--violet)}
-    .card h2{font-family:'Fraunces',Georgia,serif;font-size:1.35em;font-weight:700;margin:0 0 10px;color:#fff;line-height:1.15}
-    .card p{color:var(--muted);line-height:1.45;margin:0;font-size:.95em;font-weight:500}
-    .card .meta{margin-top:14px;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:.72em;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
-    .card .arrow{color:#fff;font-size:1.1em}
-    .foot{margin-top:52px;color:var(--muted);font-size:.85em;font-family:'JetBrains Mono',monospace;letter-spacing:.08em}
+    .card.teal{border-color:rgba(95,229,214,.45)} .card.teal:hover{border-color:rgba(95,229,214,.75)}
+    .card.rose{border-color:rgba(255,146,166,.45)} .card.rose:hover{border-color:rgba(255,146,166,.75)}
+    .card.violet{border-color:rgba(185,163,255,.50)} .card.violet:hover{border-color:rgba(185,163,255,.80)}
+    .card h2{font-family:'Fraunces',Georgia,serif;font-size:1.55em;font-weight:800;margin:0 0 12px;color:#fff;line-height:1.15}
+    .card p{color:var(--chalk);line-height:1.5;margin:0;font-size:1.05em;font-weight:600}
+    .card .meta{margin-top:16px;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:.82em;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+    .card .arrow{color:#fff;font-size:1.3em;font-weight:900}
+    .foot{margin-top:56px;color:var(--muted);font-size:1em;font-weight:600;font-family:'JetBrains Mono',monospace;letter-spacing:.08em;line-height:1.6}
+    .foot strong{color:var(--gold);font-weight:800}
     .foot a{color:var(--gold);text-decoration:none}
-    .ribbon{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;margin-bottom:34px}
-    .chip{font-family:'JetBrains Mono',monospace;font-size:.68em;letter-spacing:.14em;text-transform:uppercase;color:var(--chalk);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);padding:4px 10px;border-radius:100px}
+    .ribbon{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;margin-bottom:38px}
+    .chip{font-family:'JetBrains Mono',monospace;font-size:.82em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.10);border:2px solid rgba(255,255,255,.25);padding:6px 14px;border-radius:100px}
   </style>
 </head>
 <body>
