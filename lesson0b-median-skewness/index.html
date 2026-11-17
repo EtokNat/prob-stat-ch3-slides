@@ -31,6 +31,16 @@
     table.stat th{background:rgba(255,194,77,.18);color:#fff}
     table.stat .row-label{background:rgba(255,194,77,.12);text-align:left}
     .stem{font-family:'JetBrains Mono',monospace;font-weight:800;color:#fff;white-space:pre;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.2);border-radius:8px;padding:10px 14px;font-size:1em;letter-spacing:.14em;display:inline-block}
+    /* Proper back-to-back stem-and-leaf table */
+    table.sl{border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-weight:800;color:#fff;margin:4px 0;background:rgba(255,255,255,.04);border-radius:8px;overflow:hidden}
+    table.sl th{font-family:'Inter',sans-serif;font-size:.78em;font-weight:800;color:var(--gold);padding:6px 14px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,194,77,.12)}
+    table.sl td{padding:5px 14px;font-size:1em;letter-spacing:.25em;vertical-align:middle}
+    table.sl td.leaf-l{text-align:right}
+    table.sl td.leaf-r{text-align:left}
+    table.sl td.stem-col{text-align:center;color:var(--gold);background:rgba(255,194,77,.10);border-left:2px solid rgba(255,255,255,.35);border-right:2px solid rgba(255,255,255,.35);letter-spacing:0;padding:5px 12px;font-size:1.05em}
+    table.sl th.stem-col{background:rgba(255,194,77,.22);color:var(--gold);border-left:2px solid rgba(255,255,255,.35);border-right:2px solid rgba(255,255,255,.35)}
+    .sl-key{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--muted);font-size:.78em;margin-top:6px;letter-spacing:.06em}
+    .sl-key b{color:#fff}
     svg.shape text{font-family:'Inter',sans-serif;font-weight:700;fill:#fff;font-size:11px}
     svg.shape .curve{stroke:#ffc24d;stroke-width:3;fill:none}
     svg.shape .line{stroke-dasharray:4 3;stroke-width:2;fill:none}
@@ -90,12 +100,18 @@
   <h2>Back-to-back stem-and-leaf &mdash; DIY store</h2>
   <div class="two-col wide-right">
     <div>
-      <p class="mini">Customers per hour.</p>
-      <div class="stem">Monday&nbsp;(12) | | Saturday&nbsp;(15)
-8&nbsp;6&nbsp;3&nbsp;1&nbsp;0&nbsp;0 | 2 | 2&nbsp;3&nbsp;4&nbsp;6
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;3&nbsp;1&nbsp;1&nbsp;0 | 3 | 5&nbsp;5&nbsp;6&nbsp;8&nbsp;9&nbsp;9
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 | 4 | 0&nbsp;1&nbsp;3&nbsp;7&nbsp;9</div>
-      <p class="mini" style="margin-top:6px"><strong>Key.</strong> $0\mid2\mid2$ = 20 customers Mon, 22 customers Sat.</p>
+      <p class="mini">Customers served each hour.</p>
+      <table class="sl">
+        <thead>
+          <tr><th>Monday&nbsp;(12)</th><th class="stem-col">stem</th><th>Saturday&nbsp;(15)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="leaf-l">8&nbsp;6&nbsp;3&nbsp;1&nbsp;0&nbsp;0</td><td class="stem-col">2</td><td class="leaf-r">2&nbsp;3&nbsp;4&nbsp;6</td></tr>
+          <tr><td class="leaf-l">4&nbsp;3&nbsp;1&nbsp;1&nbsp;0</td><td class="stem-col">3</td><td class="leaf-r">5&nbsp;5&nbsp;6&nbsp;8&nbsp;9&nbsp;9</td></tr>
+          <tr><td class="leaf-l">1</td><td class="stem-col">4</td><td class="leaf-r">0&nbsp;1&nbsp;3&nbsp;7&nbsp;9</td></tr>
+        </tbody>
+      </table>
+      <p class="sl-key"><b>Key:</b> &nbsp;0&nbsp;|&nbsp;2&nbsp;|&nbsp;2 &nbsp;=&nbsp; <b>20</b>&nbsp;customers (Mon),&nbsp; <b>22</b>&nbsp;customers (Sat).</p>
     </div>
     <div>
       <div class="fragment fade-in">
@@ -380,8 +396,17 @@
 
   <div class="q-box teal">
     <p style="margin:0 0 6px"><span class="qlabel">Classwork Q1 &middot; Ex 2E Q1 (a,&nbsp;b) &middot; p. 44</span></p>
-    <p style="margin:0">A dentist&rsquo;s patients over 20 days: stems 0, 1, 2 with leaves $\ 0\!\mid\!4\,4\,4\,5\,6\,6\,6\,7\ ;\ 1\!\mid\!4\,5\,5\,6\,6\,7\,7\,8\,8\,9\ ;\ 2\!\mid\!0\,1$. &nbsp; Key: $1\!\mid\!5=15$ patients.</p>
-    <p style="margin:6px 0 0">(a) Find the median. &nbsp;&nbsp; (b) On 8 of these 20 days the dentist was late. To justify being late, would they quote the median or the mean? Explain.</p>
+    <p style="margin:0 0 4px">The number of patients treated each day by a dentist over 20 days:</p>
+    <table class="sl" style="margin:0 0 4px">
+      <thead><tr><th class="stem-col">stem</th><th>leaves</th></tr></thead>
+      <tbody>
+        <tr><td class="stem-col">0</td><td class="leaf-r">4&nbsp;4&nbsp;4&nbsp;5&nbsp;6&nbsp;6&nbsp;6&nbsp;7</td></tr>
+        <tr><td class="stem-col">1</td><td class="leaf-r">4&nbsp;5&nbsp;5&nbsp;6&nbsp;6&nbsp;7&nbsp;7&nbsp;8&nbsp;8&nbsp;9</td></tr>
+        <tr><td class="stem-col">2</td><td class="leaf-r">0&nbsp;1</td></tr>
+      </tbody>
+    </table>
+    <p class="sl-key" style="margin:0 0 6px"><b>Key:</b> &nbsp;1&nbsp;|&nbsp;5 &nbsp;=&nbsp; <b>15</b>&nbsp;patients.</p>
+    <p style="margin:6px 0 0">(a) Find the median. &nbsp;&nbsp; (b) On 8 of these 20 days the dentist was late to collect their son from school. To justify being late, would they quote the median or the mean? Explain.</p>
     <div class="fragment fade-in">
       <div class="answer"><span class="label">Answer</span>(a) $n=20$, position $=\dfrac{21}{2}=10.5$th. 10th and 11th values are both $15$. Median $=\mathbf{15}$.<br>(b) $\Sigma x=42+165+41=248$, mean $=\dfrac{248}{20}=\mathbf{12.4}$. Median $(15)>$ mean $(12.4)$, so the dentist would quote the <strong>median</strong> &mdash; it makes the &ldquo;average workload&rdquo; look higher.</div>
     </div>
