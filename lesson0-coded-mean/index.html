@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Prerequisite — Coded Data (Mean) · 9709 P5 Ch2</title>
+  <title>Prerequisite · Coded Data &mdash; The Mean · 9709 P5 Ch 2</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
@@ -12,11 +12,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/styles.css">
   <style>
-    .trap{border-left:6px solid var(--rose);background:rgba(255,146,166,.14);padding:14px 18px;border-radius:8px;margin:10px 0;font-weight:700}
+    .trap{border-left:6px solid var(--rose);background:rgba(255,146,166,.14);padding:12px 16px;border-radius:8px;margin:8px 0;font-weight:700}
     .trap strong{color:var(--rose);font-weight:900}
-    .step-row{display:flex;gap:14px;align-items:flex-start;margin:8px 0;font-weight:700}
+    .step-row{display:flex;gap:14px;align-items:flex-start;margin:6px 0;font-weight:700}
     .step-row .n{font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--gold);font-size:.95em;flex:0 0 auto;padding-top:2px;min-width:1.4em}
-    .mantra{font-family:'JetBrains Mono',monospace;font-weight:800;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;font-size:.95em}
+    .mantra{font-family:'JetBrains Mono',monospace;font-weight:800;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;font-size:.9em}
+    .q-box{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:2px solid rgba(255,255,255,.22);border-left:5px solid var(--gold);border-radius:10px;padding:12px 16px;margin:8px 0}
+    .q-box .qlabel{font-family:'JetBrains Mono',monospace;font-size:.72em;font-weight:800;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;display:inline-block;margin-right:10px}
+    .q-box.rose{border-left-color:var(--rose)} .q-box.rose .qlabel{color:var(--rose)}
+    .q-box.teal{border-left-color:var(--teal)} .q-box.teal .qlabel{color:var(--teal-soft)}
+    .q-box.violet{border-left-color:var(--violet)} .q-box.violet .qlabel{color:var(--violet)}
+    .ans-inline{color:var(--emerald);font-weight:900}
+    .shift-diag{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.04);border:2px dashed rgba(255,255,255,.25);border-radius:12px;padding:16px 20px;margin:10px 0;gap:18px;font-family:'JetBrains Mono',monospace;font-weight:800;font-size:.95em}
+    .shift-diag .arrow{color:var(--gold);font-size:1.4em}
+    .shift-diag .box{color:#fff}
+    .shift-diag .lbl{color:var(--teal);font-size:.8em;display:block;margin-bottom:4px}
+    .twist-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+    .twist{background:rgba(255,146,166,.10);border:2px solid rgba(255,146,166,.40);border-radius:10px;padding:10px 14px;font-weight:700}
+    .twist .t{color:var(--rose);font-family:'JetBrains Mono',monospace;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.72em;display:block;margin-bottom:4px}
   </style>
   <script>
     window.MathJax = {
@@ -34,12 +47,12 @@
 
 <!-- 1. TITLE -->
 <section>
-  <span class="step">PREREQUISITE · 35 MIN</span>
+  <span class="step">PREREQUISITE &middot; LESSON 0a &middot; 35&ndash;45 MIN</span>
   <h1>Coded Data &mdash; The Mean</h1>
   <hr class="rule">
-  <p style="color:var(--chalk);font-size:1.15em">One idea unlocks every coded-totals question for the rest of Paper 5:</p>
-  <p class="mantra" style="font-size:1.1em;margin-top:14px">code &nbsp;&rarr;&nbsp; compute &nbsp;&rarr;&nbsp; decode</p>
-  <p class="mini" style="margin-top:22px">Cambridge 9709 Paper 5 · Topic 5.1 · Ch 2 &sect;2.3 (Coded data)</p>
+  <p style="color:var(--chalk);font-size:1.12em">One idea that unlocks every coded-totals question for the rest of Paper 5:</p>
+  <p class="mantra" style="font-size:1.05em;margin-top:12px">code &nbsp;&rarr;&nbsp; compute &nbsp;&rarr;&nbsp; decode</p>
+  <p class="mini" style="margin-top:18px">Cambridge 9709 Paper 5 &middot; Ch 2 &sect;2.2 &middot; Key Points 2.3 &amp; 2.4 &middot; Worked Examples 2.9&ndash;2.12</p>
 </section>
 
 <!-- 2. WHY CODE? -->
@@ -48,173 +61,294 @@
   <h2>Why code at all?</h2>
   <p>Find the mean of&nbsp; $101,\ 103,\ 104,\ 109,\ 113$.</p>
   <div class="fragment fade-in">
-    <p style="margin-top:10px"><strong>Trick.</strong> Subtract $100$ from every value:</p>
-    <p style="text-align:center;font-size:1.15em;color:var(--gold)">$1,\ 3,\ 4,\ 9,\ 13$</p>
+    <p style="margin-top:8px"><strong>Trick.</strong> Subtract $100$ from every value:</p>
+    <p style="text-align:center;font-size:1.18em;color:var(--gold);margin:6px 0">$1,\ 3,\ 4,\ 9,\ 13$</p>
   </div>
   <div class="fragment fade-in">
-    <p>Mean of the <em>coded</em> values $= \dfrac{1+3+4+9+13}{5} = 6$.</p>
-  </div>
-  <div class="fragment fade-in-then-semi-out">
-    <p>Add $100$ back to decode: $\ \bar{x} = 6 + 100 = \mathbf{106}$.</p>
+    <p>Mean of the <em>coded</em> values is $\ \dfrac{1+3+4+9+13}{5}=6$.</p>
   </div>
   <div class="fragment fade-in">
-    <div class="card gold" style="margin-top:14px">
-      <p style="margin:4px 0" class="mantra">The golden rule</p>
-      <p style="margin:4px 0;font-size:1.05em"><strong>Code</strong> &rarr; shrink the arithmetic. &nbsp;<strong>Compute</strong> &rarr; mean of the small numbers. &nbsp;<strong>Decode</strong> &rarr; reverse what you did.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 3. RULE 1 - ADDITION CODING -->
-<section>
-  <span class="step rose">CORE · ADDITION CODING</span>
-  <h2>The shift: $y = x - b$</h2>
-  <p>Every value slides by $-b$ on the number line &rarr; so does the mean.</p>
-  <div class="fragment fade-in">
-    <p style="margin-top:10px"><strong>Algebra you&rsquo;ll keep reusing:</strong></p>
-    <div class="big-eq teal">
-      $\sum(x-b) = \sum x - nb$
-    </div>
-    <p class="mini">(There are $n$ copies of $b$ being subtracted — once per data value.)</p>
-  </div>
-  <div class="fragment fade-in">
-    <div class="big-eq" style="margin-top:12px">
-      $\bar{x} = \dfrac{\sum(x-b)}{n} + b \qquad \bar{x} = \dfrac{\sum(x-b)f}{\sum f} + b$
-    </div>
-    <p class="mini">Ungrouped on the left · grouped (frequency table) on the right &mdash; <strong>Key Point 2.3</strong>.</p>
+    <p>Add $100$ back to decode: $\ \bar{x}=6+100=\mathbf{106}$.</p>
   </div>
   <div class="fragment fade-in">
     <div class="card gold" style="margin-top:10px">
-      <span class="label">Worked 2.10 &mdash; grouped</span>
-      <p style="margin:6px 0">Forty values of $x$ coded as $x-3$ into classes $0\text{--}18,\ 18\text{--}24,\ 24\text{--}32$ with frequencies $9,\ 13,\ 18$.</p>
-      <p style="margin:6px 0">Mid-values $9,\ 21,\ 28 \Rightarrow \bar{x} = \dfrac{9{\cdot}9 + 21{\cdot}13 + 28{\cdot}18}{40} + 3 = \mathbf{24.45}$.</p>
+      <p class="mantra" style="margin:2px 0">The golden rule</p>
+      <p style="margin:4px 0;font-size:1.02em"><strong>Code</strong> &rarr; shrink the arithmetic. &nbsp;<strong>Compute</strong> &rarr; mean of the small numbers. &nbsp;<strong>Decode</strong> &rarr; reverse what you did.</p>
     </div>
   </div>
 </section>
 
-<!-- 4. RULE 2 - MULTIPLICATION CODING -->
+<!-- 3. THE SHIFT PICTURE -->
 <section>
-  <span class="step">CORE · SCALE + SHIFT</span>
-  <h2>When the code multiplies too: $y = ax - b$</h2>
-  <p>Example: converting units, scaling percentages, or $y = 2x - 3$.</p>
-  <div class="fragment highlight-red">
-    <p style="margin-top:12px;font-size:1.1em"><strong>Undo in <em>reverse</em> order:</strong> add back $b$ <em>first</em>, then divide by $a$.</p>
+  <span class="step rose">CORE &middot; ADDITION CODING</span>
+  <h2>The shift: $\ y=x-b$</h2>
+  <p>Subtract $b$ from every value. Every value slides left by $b$ on the number line &mdash; <strong>so does the mean</strong>.</p>
+  <div class="shift-diag fragment fade-in">
+    <div><span class="lbl">values of $x-b$</span><span class="box">mean of $x-b$</span></div>
+    <div class="arrow">&larr;&nbsp;translated by $-b$&nbsp;&larr;</div>
+    <div style="text-align:right"><span class="lbl">values of $x$</span><span class="box">mean of $x$</span></div>
   </div>
   <div class="fragment fade-in">
-    <div class="big-eq teal" style="margin-top:10px">
-      $\bar{x} = \dfrac{1}{a}\left[\dfrac{\sum(ax-b)}{n} + b\right]$
+    <p style="margin-top:10px"><strong>Algebra you&rsquo;ll reuse all year:</strong></p>
+    <div class="big-eq teal">$\sum(x-b)=\sum x-nb$</div>
+    <p class="mini">(There are $n$ copies of $b$ being subtracted &mdash; one per data value.)</p>
+  </div>
+</section>
+
+<!-- 4. KEY POINT 2.3 -->
+<section>
+  <span class="step">KEY POINT 2.3 &middot; ADDITION CODING</span>
+  <h2>The decoding formulas</h2>
+  <div class="two-col">
+    <div class="card gold">
+      <div class="label">Ungrouped</div>
+      <p style="font-size:1.1em;margin:4px 0">$\bar{x}=\dfrac{\sum(x-b)}{n}+b$</p>
     </div>
-    <p class="mini">Key Point 2.4. Same rule: code &rarr; compute &rarr; decode &mdash; just two undo-steps instead of one.</p>
+    <div class="card teal">
+      <div class="label">Grouped</div>
+      <p style="font-size:1.1em;margin:4px 0">$\bar{x}=\dfrac{\sum(x-b)f}{\sum f}+b$</p>
+    </div>
+  </div>
+  <div class="fragment fade-in" style="margin-top:12px">
+    <p class="mantra">One-liner to memorise</p>
+    <div class="big-eq">$\bar{x}=\operatorname{mean}(x-b)+b$</div>
   </div>
   <div class="fragment fade-in">
-    <div class="card gold" style="margin-top:10px">
-      <span class="label">Worked 2.12</span>
-      <p style="margin:6px 0">For 20 values of $x$ with $\sum(2x-3) = 104$, find $\bar{x}$.</p>
-      <div class="step-row"><span class="n">1</span><span>Mean of coded $= \dfrac{104}{20} = 5.2$.</span></div>
-      <div class="step-row"><span class="n">2</span><span>So $2\bar{x} - 3 = 5.2$.</span></div>
-      <div class="step-row"><span class="n">3</span><span><em>Add 3</em> first: $2\bar{x} = 8.2$.</span></div>
-      <div class="step-row"><span class="n">4</span><span>Then <em>divide by 2</em>: $\bar{x} = \mathbf{4.1}$.</span></div>
+    <div class="trap"><strong>Watch out.</strong> The code can be $x-b$ or $x+b$. &nbsp;If the code is $x+b$, then $\bar{x}=\operatorname{mean}(x+b)-b$ &mdash; you <em>undo</em> whatever was done.</div>
+  </div>
+</section>
+
+<!-- 5. WORKED EXAMPLE 2.9 -->
+<section>
+  <span class="step teal">WORKED EXAMPLE 2.9 &middot; COMBINED GROUPS</span>
+  <h2>Two groups, two codings</h2>
+  <p>$b$ = age of a boy, $g$ = age of a girl. 5 years ago, the 10 boys satisfied $\Sigma(b-5)=127.0$. In 5 years&rsquo; time the 15 girls will satisfy $\Sigma(g+5)=351.0$. Find the mean age today of</p>
+  <p style="margin:4px 0"><strong>(a)</strong> the 10 boys &nbsp;&nbsp; <strong>(b)</strong> the 15 girls &nbsp;&nbsp; <strong>(c)</strong> all 25 combined.</p>
+
+  <div class="fragment fade-in" style="margin-top:8px">
+    <div class="step-row"><span class="n">a</span><span>Boys&rsquo; past mean was $\dfrac{127}{10}=12.7$. &nbsp;Today: $\ \bar{b}=\dfrac{127}{10}+5=\mathbf{17.7\ \text{years}}$.</span></div>
+  </div>
+  <div class="fragment fade-in">
+    <div class="step-row"><span class="n">b</span><span>Girls&rsquo; future mean is $\dfrac{351}{15}=23.4$. &nbsp;Today: $\ \bar{g}=\dfrac{351}{15}-5=\mathbf{18.4\ \text{years}}$.</span></div>
+  </div>
+  <div class="fragment fade-in">
+    <div class="step-row"><span class="n">c</span><span>Combine the <em>totals</em>, not the means. $\ \Sigma b=177,\ \Sigma g=276$.
+    <br>$\displaystyle \bar{\text{all}}=\frac{\Sigma b+\Sigma g}{10+15}=\frac{177+276}{25}=\mathbf{18.12\ \text{years}}$.</span></div>
+  </div>
+  <div class="fragment fade-in">
+    <div class="trap"><strong>Trap.</strong> Combined mean is <em>never</em> the average of the two means. It is always $\dfrac{\Sigma x+\Sigma y}{n_x+n_y}$.</div>
+  </div>
+</section>
+
+<!-- 6. WORKED EXAMPLE 2.10 -->
+<section>
+  <span class="step teal">WORKED EXAMPLE 2.10 &middot; CODED FREQUENCY TABLE</span>
+  <h2>40 values of $x$ in a grouped table</h2>
+  <table style="width:100%;border-collapse:collapse;font-weight:800;font-size:.95em;margin:8px 0">
+    <tr><td style="border:2px solid rgba(255,255,255,.3);padding:6px;background:rgba(255,194,77,.12)">$x-3$</td>
+        <td style="border:2px solid rgba(255,255,255,.3);padding:6px;text-align:center">$0\le\cdot<18$</td>
+        <td style="border:2px solid rgba(255,255,255,.3);padding:6px;text-align:center">$18\le\cdot<24$</td>
+        <td style="border:2px solid rgba(255,255,255,.3);padding:6px;text-align:center">$24\le\cdot<32$</td></tr>
+    <tr><td style="border:2px solid rgba(255,255,255,.3);padding:6px;background:rgba(255,194,77,.12)">frequency $f$</td>
+        <td style="border:2px solid rgba(255,255,255,.3);padding:6px;text-align:center">$9$</td>
+        <td style="border:2px solid rgba(255,255,255,.3);padding:6px;text-align:center">$13$</td>
+        <td style="border:2px solid rgba(255,255,255,.3);padding:6px;text-align:center">$18$</td></tr>
+  </table>
+  <p>Estimate $\bar{x}$.</p>
+  <div class="fragment fade-in">
+    <p style="margin:6px 0"><strong>Step 1.</strong> Class mid-values of the <em>coded</em> variable: $9,\ 21,\ 28$.</p>
+  </div>
+  <div class="fragment fade-in">
+    <p style="margin:6px 0"><strong>Step 2.</strong> $\displaystyle \bar{x}=\frac{\Sigma(x-3)f}{\Sigma f}+3=\frac{9(9)+21(13)+28(18)}{40}+3$</p>
+    <p style="margin:6px 0 2px 42px">$=\dfrac{81+273+504}{40}+3=\dfrac{858}{40}+3=21.45+3=\mathbf{24.45}$.</p>
+  </div>
+  <div class="fragment fade-in">
+    <div class="card teal"><p style="margin:2px 0;font-size:.98em"><strong>Tip.</strong> You do <em>not</em> need to decode the mid-values first. Code, average, then decode once at the end.</p></div>
+  </div>
+</section>
+
+<!-- 7. MULTIPLICATION CODING MOTIVATION -->
+<section>
+  <span class="step rose">CORE &middot; MULTIPLICATION CODING</span>
+  <h2>Scaling as well as shifting: $\ y=ax-b$</h2>
+  <p>Four teachers earn $\$3600,\ \$4200,\ \$3700,\ \$4500$ &mdash; mean $\$4000$.</p>
+  <p>Each gets a <strong>10%</strong> raise, then pays <strong>$\$50$</strong> extra tax. What is the new mean?</p>
+  <div class="fragment fade-in">
+    <p style="margin:6px 0">New salaries: $\ \$3910,\ \$4570,\ \$4020,\ \$4900\ \Rightarrow\ $ mean $=\$4350$.</p>
+  </div>
+  <div class="fragment fade-in">
+    <div class="big-eq teal">Data coded as $\ ax-b\ $ has mean $\ a\bar{x}-b$.</div>
+  </div>
+  <div class="fragment fade-in">
+    <p style="margin:6px 0">Check: $\ 1.1\times 4000-50=4350\ $&check;</p>
+  </div>
+  <div class="fragment fade-in">
+    <div class="trap"><strong>The order matters.</strong> To recover $\bar{x}$ from $\overline{ax-b}$: &nbsp;<em>undo $-b$ first, then undo $\times a$.</em></div>
+  </div>
+</section>
+
+<!-- 8. KEY POINT 2.4 -->
+<section>
+  <span class="step">KEY POINT 2.4 &middot; MULTIPLICATION CODING</span>
+  <h2>The full decoding formulas</h2>
+  <div class="two-col">
+    <div class="card gold">
+      <div class="label">Ungrouped</div>
+      <p style="font-size:1.08em;margin:4px 0">$\bar{x}=\dfrac{1}{a}\!\left[\dfrac{\Sigma(ax-b)}{n}+b\right]$</p>
+    </div>
+    <div class="card teal">
+      <div class="label">Grouped</div>
+      <p style="font-size:1.08em;margin:4px 0">$\bar{x}=\dfrac{1}{a}\!\left[\dfrac{\Sigma(ax-b)f}{\Sigma f}+b\right]$</p>
+    </div>
+  </div>
+  <div class="fragment fade-in" style="margin-top:10px">
+    <p class="mantra">One-liner to memorise</p>
+    <div class="big-eq">$\bar{x}=\dfrac{1}{a}\,\big[\operatorname{mean}(ax-b)+b\big]$</div>
+  </div>
+  <div class="fragment fade-in">
+    <p><strong>Expansion identity (crucial for Paper 5):</strong></p>
+    <div class="big-eq teal">$\Sigma(ax-b)=a\Sigma x-nb$</div>
+  </div>
+</section>
+
+<!-- 9. WORKED EXAMPLE 2.11 -->
+<section>
+  <span class="step teal">WORKED EXAMPLE 2.11 &middot; UNIT CHANGE</span>
+  <h2>$\Sigma x$ in m$^{2}$ &rarr; total in cm$^{2}$</h2>
+  <p>The total area of cloth from a factory is $\Sigma x$ in square metres. Find an expression in $x$ for the total area in <strong>square centimetres</strong>.</p>
+  <div class="fragment fade-in">
+    <p><strong>Convert the unit:</strong></p>
+    <p style="margin:4px 0">$1\text{ m}=100\text{ cm}\ \Rightarrow\ 1\text{ m}^2=100^2\text{ cm}^2=10\,000\text{ cm}^2$.</p>
+  </div>
+  <div class="fragment fade-in">
+    <p>So each $x$ metres$^{2}$ becomes $10\,000x$ cm$^{2}$ &mdash; total $=\ \mathbf{\Sigma 10\,000x}\ =\ \mathbf{10\,000\,\Sigma x}$.</p>
+  </div>
+  <div class="fragment fade-in">
+    <div class="card gold">
+      <p style="margin:2px 0;font-size:.98em"><strong>Why it matters.</strong> Multiplying every data value by a constant $k$ multiplies the sum by $k$. This is the arithmetic behind every unit-change question (grams &leftrightarrow; kg, m/s &leftrightarrow; km/h, mm &leftrightarrow; cm).</p>
     </div>
   </div>
 </section>
 
-<!-- 5. COMBINING TWO DATASETS -->
+<!-- 10. WORKED EXAMPLE 2.12 -->
 <section>
-  <span class="step violet">CORE · COMBINING GROUPS</span>
-  <h2>Two coded datasets &rarr; one combined mean</h2>
-  <p><strong>Decode each $\sum$ back to raw $\sum x$ and $\sum y$ first.</strong> Never average the two coded means directly.</p>
+  <span class="step teal">WORKED EXAMPLE 2.12 &middot; UNDO IN ORDER</span>
+  <h2>From $\Sigma(2x-3)=104$ (20 values) find $\bar{x}$</h2>
+  <p><strong>Method 1 &mdash; decode the mean</strong></p>
   <div class="fragment fade-in">
-    <div class="card rose" style="margin-top:10px">
-      <span class="label">Worked 2.9 &mdash; boys &amp; girls</span>
-      <p style="margin:6px 0">10 boys: $\sum(b - 5) = 127$. &nbsp; 15 girls: $\sum(g + 5) = 351$. Find the combined mean age.</p>
-    </div>
+    <div class="step-row"><span class="n">1</span><span>Mean of coded values: $\ \overline{2x-3}=\dfrac{104}{20}=5.2$.</span></div>
   </div>
   <div class="fragment fade-in">
-    <div class="step-row"><span class="n">1</span><span>Decode boys: $\sum b = 127 + 10(5) = 177 \Rightarrow \bar{b} = 17.7$.</span></div>
+    <div class="step-row"><span class="n">2</span><span>Undo $-3$: $\ 2\bar{x}=5.2+3=8.2$.</span></div>
   </div>
   <div class="fragment fade-in">
-    <div class="step-row"><span class="n">2</span><span>Decode girls: $\sum g = 351 - 15(5) = 276 \Rightarrow \bar{g} = 18.4$.</span></div>
-    <p class="mini" style="margin-left:36px">Watch the sign: $\sum(g+5) = \sum g + 5n$, so decoding <em>subtracts</em> $5n$.</p>
+    <div class="step-row"><span class="n">3</span><span>Undo $\times 2$: $\ \bar{x}=\dfrac{8.2}{2}=\mathbf{4.1}$.</span></div>
+  </div>
+  <hr class="sep">
+  <div class="fragment fade-in">
+    <p><strong>Method 2 &mdash; expand the brackets</strong></p>
+    <p style="margin:4px 0">$\Sigma(2x-3)=2\Sigma x-20(3)=104\ \Rightarrow\ 2\Sigma x=164\ \Rightarrow\ \Sigma x=82\ \Rightarrow\ \bar{x}=\dfrac{82}{20}=\mathbf{4.1}$.</p>
   </div>
   <div class="fragment fade-in">
-    <div class="step-row"><span class="n">3</span><span>Combine: $\bar{\text{all}} = \dfrac{177 + 276}{10 + 15} = \dfrac{453}{25} = \mathbf{18.12}\ \text{yr}$.</span></div>
-  </div>
-  <div class="fragment fade-in">
-    <p class="mini" style="margin-top:14px;color:var(--teal)">This exact pattern reappears in Ch 3 &sect;3.3 &mdash; only with $\sum x^2$ instead of $\sum x$ to combine variances.</p>
+    <div class="card teal"><p style="margin:2px 0;font-size:.96em"><strong>Either method works.</strong> Use expansion when the question also asks for $\Sigma x$.</p></div>
   </div>
 </section>
 
-<!-- 6. EXAM TWISTS -->
+<!-- 11. EXAM TWISTS -->
 <section>
-  <span class="step rose">EXAM-PROOFING</span>
-  <h2>How examiners twist this</h2>
-  <p class="mini">Four mutations. Spot the pattern, apply the rule, win the mark.</p>
-  <div class="fragment fade-in">
-    <div class="trap">
-      <strong>Twist 1 &mdash; sign of the constant.</strong> If given $\sum(x+7) = 420$, the &ldquo;$+7$&rdquo; means decoding <em>subtracts</em> $7n$: $\sum x = 420 - 7n$. If the sign is &ldquo;$-7$&rdquo;, you <em>add</em> $7n$. <em>Always expand the bracket before you solve.</em>
-    </div>
+  <span class="step rose">EXAM TWISTS</span>
+  <h2>The same skill, seven disguises</h2>
+  <div class="twist-grid">
+    <div class="twist"><span class="t">Twist 1</span>Sign flip &mdash; code is $x+b$ (not $x-b$). Decode by <em>subtracting</em> $b$.</div>
+    <div class="twist"><span class="t">Twist 2</span>Mixed constants &mdash; e.g. $\Sigma(ax-b)$ and $\Sigma(bx-a)$ in the same question.</div>
+    <div class="twist"><span class="t">Twist 3</span>Solve for $n$ &mdash; given $\bar{x}$ and $\Sigma(x-b)$, find how many data values.</div>
+    <div class="twist"><span class="t">Twist 4</span>Solve for $b$ &mdash; given two codings of the same data, deduce the constant.</div>
+    <div class="twist"><span class="t">Twist 5</span>Combined groups &mdash; add the <em>totals</em>, divide by total frequency.</div>
+    <div class="twist"><span class="t">Twist 6</span>Unit change &mdash; mm to cm, g to kg, m/s to km/h: multiply $\Sigma$ by the conversion factor.</div>
+    <div class="twist"><span class="t">Twist 7</span>Grouped data &mdash; code the mid-values, don&rsquo;t decode them.</div>
   </div>
-  <div class="fragment fade-in">
-    <div class="trap">
-      <strong>Twist 2 &mdash; different constants in two groups.</strong> E.g. one dataset coded $(x-10)$, another $(y+5)$. Decode each to raw $\sum x$, $\sum y$ <em>separately</em>, then combine. Mixing codes mid-calculation is the #1 wrong answer.
-    </div>
-  </div>
-  <div class="fragment fade-in">
-    <div class="trap">
-      <strong>Twist 3 &mdash; solve for $n$ or $b$.</strong> Same identity, rearranged: from $\sum(x-b) = \sum x - nb$ and a given $\bar{x}$, isolate the unknown. The algebra is the whole question.
-    </div>
-  </div>
-  <div class="fragment fade-in">
-    <div class="trap">
-      <strong>Twist 4 &mdash; &ldquo;mean of coded&rdquo; vs &ldquo;$\sum$ of coded&rdquo;.</strong> Read carefully. <em>Mean of coded $= \sum(x-b)/n$</em> (already divided). <em>$\sum(x-b)$</em> is the raw total (not divided). Different starting points &mdash; different arithmetic.
-    </div>
+  <div class="fragment fade-in" style="margin-top:6px">
+    <div class="card gold"><p style="margin:2px 0;font-size:.98em"><strong>One mantra beats all seven.</strong> &nbsp;<span class="mantra" style="font-size:1em">Do whatever was done &mdash; then undo it in reverse order.</span></p></div>
   </div>
 </section>
 
-<!-- 7. CLASSWORK -->
+<!-- 12. CLASSWORK -->
 <section>
-  <span class="step">CLASSWORK · 7 MIN</span>
-  <h2>Try it yourself</h2>
-  <div class="card gold">
-    <p class="q">Twenty-five values of $z$ are such that $\sum(z - 7) = 275$. Find $\bar{z}$. <span class="marks">[Exercise 2C Q2]</span></p>
-    <p class="mini">Hint: Twist 1 &mdash; what&rsquo;s the sign? Then apply Key Point 2.3.</p>
+  <span class="step teal">CLASSWORK &middot; DO NOW (12 MIN)</span>
+  <h2>Two questions, finish in class</h2>
+
+  <div class="q-box teal">
+    <p style="margin:0 0 6px"><span class="qlabel">Classwork Q1 &middot; Ex 2D Q1 &middot; p. 38</span></p>
+    <p style="margin:0">The masses, $x$ kg, of 12 objects are such that $\bar{x}=0.475$. Find the value of $\Sigma 1000x$ and state what it represents.</p>
+    <div class="fragment fade-in">
+      <div class="answer"><span class="label">Answer</span>$\Sigma x=0.475\times 12=5.7$ kg, so $\Sigma 1000x=\mathbf{5700}$. It is the <em>total mass of the 12 objects in grams</em>.</div>
+    </div>
   </div>
-  <div class="answer">
-    <span class="label">Verified final answer</span>
+
+  <div class="q-box" style="margin-top:10px">
+    <p style="margin:0 0 6px"><span class="qlabel">Classwork Q2 &middot; Ex 2D Q4 &middot; p. 38</span></p>
+    <p style="margin:0">Speeds, measured in metres per second, are denoted by $x$. Find the constant $k$ such that $kx$ denotes the speeds in kilometres per hour.</p>
     <div class="fragment fade-in">
-      <div class="step-row"><span class="n">1</span><span>Mean of coded $= \dfrac{275}{25} = 11$.</span></div>
-    </div>
-    <div class="fragment fade-in">
-      <div class="step-row"><span class="n">2</span><span>Decode: add $7$ back &rarr; $\bar{z} = 11 + 7$.</span></div>
-    </div>
-    <div class="fragment fade-in">
-      <p style="margin:8px 0 0"><strong>$\bar{z} = 18$</strong>.</p>
+      <div class="answer"><span class="label">Answer</span>$1\text{ m/s}=\dfrac{1}{1000}\text{ km} \div \dfrac{1}{3600}\text{ h}=\dfrac{3600}{1000}=3.6$ km/h. So $\mathbf{k=3.6}$ and $3.6x$ km/h.</div>
     </div>
   </div>
 </section>
 
-<!-- 8. ASSIGNMENT -->
+<!-- 13. HOMEWORK (part 1) -->
 <section>
-  <span class="step violet">ASSIGNMENT · TAKE HOME</span>
-  <h2>For next lesson</h2>
-  <div class="card violet">
-    <p class="q">A dataset of 20 values is denoted by $x$ where $\sum(x - 1) = 58$. Another dataset of 30 values is denoted by $y$ where $\sum(y - 2) = 36$. Find the mean of the 50 values of $x$ and $y$ combined. <span class="marks">[Exercise 2C Q10]</span></p>
-    <p class="mini">Hint: Twist 2 &mdash; different constants. Decode each separately before combining.</p>
+  <span class="step violet">HOMEWORK &middot; PRACTICE SET (5 QUESTIONS)</span>
+  <h2>All from Exercise 2D &mdash; multiplication coding</h2>
+
+  <div class="q-box violet">
+    <p style="margin:0 0 4px"><span class="qlabel">H1 &middot; Ex 2D Q2 &middot; p. 38 &middot; Unit scaling, two ways</span></p>
+    <p style="margin:0">Total mass of gold from a mine is $\Sigma x$ grams. Find an expression in $x$ for the total mass in:<br>(a) carats, given 1 carat $=200$ mg &nbsp;&nbsp; (b) kilograms.</p>
+    <div class="fragment fade-in">
+      <div class="answer"><span class="label">Answer</span>(a) $1$ carat $=0.2$ g, so $x$ g $=\dfrac{x}{0.2}=5x$ carats. Total $=\mathbf{5\Sigma x}$ carats.<br>(b) $1$ kg $=1000$ g, so $x$ g $=\dfrac{x}{1000}$ kg. Total $=\mathbf{\dfrac{1}{1000}\Sigma x}=\mathbf{0.001\,\Sigma x}$ kg.</div>
+    </div>
   </div>
-  <div class="answer">
-    <span class="label">Verified final answer</span>
+
+  <div class="q-box violet" style="margin-top:8px">
+    <p style="margin:0 0 4px"><span class="qlabel">H2 &middot; Ex 2D Q3 &middot; p. 38 &middot; Area unit change</span></p>
+    <p style="margin:0">Land for growing wheat is $\Sigma w$ hectares. Find an expression in $w$ for the total area in square kilometres, given $1$ hectare $=10\,000$ m$^2$.</p>
     <div class="fragment fade-in">
-      <div class="step-row"><span class="n">1</span><span>Decode $x$: $\sum x = 58 + 20(1) = 78$.</span></div>
+      <div class="answer"><span class="label">Answer</span>$1$ km$^2=10^6$ m$^2$, so $1$ ha $=\dfrac{10\,000}{10^6}=0.01$ km$^2$.<br>Total $=0.01\,\Sigma w=\mathbf{\dfrac{\Sigma w}{100}}$ km$^2$.</div>
     </div>
+  </div>
+
+  <div class="q-box violet" style="margin-top:8px">
+    <p style="margin:0 0 4px"><span class="qlabel">H3 &middot; Ex 2D Q5 &middot; p. 38 &middot; Grouped data in the wrong unit</span></p>
+    <p style="margin:0">Wind speeds $x$ mph at a coastal location on 40 consecutive days:</p>
+    <p style="margin:4px 0;font-size:.92em;font-family:'JetBrains Mono',monospace">$15\!\le\! x\!<\!17$: 9&emsp;$17\!\le\! x\!<\!20$: 13&emsp;$20\!\le\! x\!<\!24$: 14&emsp;$24\!\le\! x\!<\!25$: 4</p>
+    <p style="margin:0">Abel knows $5$ miles $\approx 8$ km. (a) Explain how to estimate the mean in km/h without converting boundaries. (b) Estimate the mean wind speed in km/h.</p>
     <div class="fragment fade-in">
-      <div class="step-row"><span class="n">2</span><span>Decode $y$: $\sum y = 36 + 30(2) = 96$.</span></div>
+      <div class="answer"><span class="label">Answer</span>(a) Find the mean in mph using class mid-values, then multiply once by $\dfrac{8}{5}=1.6$.<br>(b) Mid-values: $16,\ 18.5,\ 22,\ 24.5$.<br>$\bar{x}_{\text{mph}}=\dfrac{9(16)+13(18.5)+14(22)+4(24.5)}{40}=\dfrac{144+240.5+308+98}{40}=\dfrac{790.5}{40}=19.7625$ mph.<br>$\bar{x}_{\text{km/h}}=19.7625\times 1.6=\mathbf{31.62\ \text{km/h}}$.</div>
     </div>
+  </div>
+</section>
+
+<!-- 14. HOMEWORK (part 2) -->
+<section>
+  <span class="step violet">HOMEWORK &middot; THE HARDER TWO</span>
+  <h2>Algebra &mdash; Ex 2D Q6 &amp; Q7</h2>
+
+  <div class="q-box violet">
+    <p style="margin:0 0 4px"><span class="qlabel">H4 &middot; Ex 2D Q6 &middot; p. 38 &middot; Mixed constants</span></p>
+    <p style="margin:0">Given that $15$ values of $x$ satisfy $\Sigma(3x-2)=528$, find $\bar{x}$ and find the value of $b$ such that $\Sigma(0.5x-b)=138$.</p>
     <div class="fragment fade-in">
-      <div class="step-row"><span class="n">3</span><span>Combine: $\bar{\text{all}} = \dfrac{78 + 96}{20 + 30} = \dfrac{174}{50}$.</span></div>
+      <div class="answer"><span class="label">Answer</span>$\Sigma(3x-2)=3\Sigma x-15(2)=3\Sigma x-30=528\ \Rightarrow\ \Sigma x=186\ \Rightarrow\ \bar{x}=\dfrac{186}{15}=\mathbf{12.4}$.<br>$\Sigma(0.5x-b)=0.5(186)-15b=93-15b=138\ \Rightarrow\ -15b=45\ \Rightarrow\ \mathbf{b=-3}$.</div>
     </div>
+  </div>
+
+  <div class="q-box violet" style="margin-top:10px">
+    <p style="margin:0 0 4px"><span class="qlabel">H5 &middot; Ex 2D Q7 &middot; p. 38 &middot; Two codings, two unknowns</span></p>
+    <p style="margin:0">For 20 values of $x$: $\Sigma(ax-b)=400$ and $\Sigma(bx-a)=545$. Given that $\bar{x}=6.25$, find $a$ and $b$.</p>
     <div class="fragment fade-in">
-      <p style="margin:8px 0 0"><strong>Mean $= 3.48$</strong>.</p>
+      <div class="answer"><span class="label">Answer</span>$\Sigma x=6.25\times 20=125$.<br>$a(125)-20b=400\ \Rightarrow\ 25a-4b=80$ &nbsp;(i)<br>$b(125)-20a=545\ \Rightarrow\ -4a+25b=109$ &nbsp;(ii)<br>$(\text{i})\times 25$: $\ 625a-100b=2000$. &nbsp; $(\text{ii})\times 4$: $\ -16a+100b=436$.<br>Add: $609a=2436\ \Rightarrow\ \mathbf{a=4}$. Sub back: $25(4)-4b=80\ \Rightarrow\ \mathbf{b=5}$.<br><em>Check:</em> $\Sigma(4x-5)=4(125)-20(5)=400$ &check; &nbsp;$\Sigma(5x-4)=5(125)-20(4)=545$ &check;.</div>
     </div>
+  </div>
+
+  <div class="fragment fade-in">
+    <p class="mini" style="margin-top:8px">Submit next lesson. Show every step &mdash; CIE awards method marks for the algebra, not the final number.</p>
   </div>
 </section>
 

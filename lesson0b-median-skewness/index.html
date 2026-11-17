@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Prerequisite · Median, Choosing an Average &amp; Skewness · 9709 P5 Ch 2</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    .trap{border-left:6px solid var(--rose);background:rgba(255,146,166,.14);padding:12px 16px;border-radius:8px;margin:8px 0;font-weight:700}
+    .trap strong{color:var(--rose);font-weight:900}
+    .step-row{display:flex;gap:14px;align-items:flex-start;margin:6px 0;font-weight:700}
+    .step-row .n{font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--gold);font-size:.95em;flex:0 0 auto;padding-top:2px;min-width:1.4em}
+    .mantra{font-family:'JetBrains Mono',monospace;font-weight:800;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;font-size:.9em}
+    .q-box{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:2px solid rgba(255,255,255,.22);border-left:5px solid var(--gold);border-radius:10px;padding:12px 16px;margin:8px 0}
+    .q-box .qlabel{font-family:'JetBrains Mono',monospace;font-size:.72em;font-weight:800;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;display:inline-block;margin-right:10px}
+    .q-box.rose{border-left-color:var(--rose)} .q-box.rose .qlabel{color:var(--rose)}
+    .q-box.teal{border-left-color:var(--teal)} .q-box.teal .qlabel{color:var(--teal-soft)}
+    .q-box.violet{border-left-color:var(--violet)} .q-box.violet .qlabel{color:var(--violet)}
+    .ans-inline{color:var(--emerald);font-weight:900}
+    .twist-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+    .twist{background:rgba(255,146,166,.10);border:2px solid rgba(255,146,166,.40);border-radius:10px;padding:10px 14px;font-weight:700;font-size:.94em}
+    .twist .t{color:var(--rose);font-family:'JetBrains Mono',monospace;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.72em;display:block;margin-bottom:4px}
+    table.stat{width:100%;border-collapse:collapse;font-weight:800;font-size:.9em;margin:6px 0}
+    table.stat td,table.stat th{border:2px solid rgba(255,255,255,.3);padding:6px 8px;text-align:center}
+    table.stat th{background:rgba(255,194,77,.18);color:#fff}
+    table.stat .row-label{background:rgba(255,194,77,.12);text-align:left}
+    .stem{font-family:'JetBrains Mono',monospace;font-weight:800;color:#fff;white-space:pre;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.2);border-radius:8px;padding:10px 14px;font-size:1em;letter-spacing:.14em;display:inline-block}
+    svg.shape text{font-family:'Inter',sans-serif;font-weight:700;fill:#fff;font-size:11px}
+    svg.shape .curve{stroke:#ffc24d;stroke-width:3;fill:none}
+    svg.shape .line{stroke-dasharray:4 3;stroke-width:2;fill:none}
+    svg.shape .axis{stroke:rgba(255,255,255,.4);stroke-width:1.5}
+    .shape-wrap{display:flex;justify-content:space-around;gap:14px;flex-wrap:wrap}
+    .shape-cap{text-align:center;font-family:'JetBrains Mono',monospace;font-size:.78em;color:var(--chalk);margin-top:6px;letter-spacing:.08em;text-transform:uppercase;font-weight:800}
+  </style>
+  <script>
+    window.MathJax = {
+      tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},
+      chtml:{scale:1.12,mtextInheritFont:true},
+      options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},
+      svg:{fontCache:'global'},
+      startup:{typeset:true, ready:()=>MathJax.startup.defaultReady()}
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- 1. TITLE -->
+<section>
+  <span class="step">PREREQUISITE &middot; LESSON 0b &middot; 40&ndash;45 MIN</span>
+  <h1>Median, Choosing an Average &amp; Skewness</h1>
+  <hr class="rule">
+  <p style="color:var(--chalk);font-size:1.1em">Finish Chapter 2: the three averages, which one to use, and what the shape of the distribution tells you.</p>
+  <p class="mantra" style="font-size:1.05em;margin-top:12px">position &nbsp;&rarr;&nbsp; value &nbsp;&rarr;&nbsp; shape</p>
+  <p class="mini" style="margin-top:18px">Cambridge 9709 Paper 5 &middot; Ch 2 &sect;2.3 &ndash; &sect;2.5 &middot; Key Points 2.5 &amp; 2.6 &middot; Worked Example 2.13</p>
+</section>
+
+<!-- 2. KEY POINT 2.5 — THE POSITION FORMULA -->
+<section>
+  <span class="step teal">KEY POINT 2.5 &middot; MEDIAN POSITION</span>
+  <h2>Where does the median sit?</h2>
+  <p>The median splits an ordered set of data into two equal halves &mdash; a bottom half and a top half.</p>
+  <div class="two-col" style="margin-top:8px">
+    <div class="card gold">
+      <div class="label">Ungrouped (list / stem-leaf / ordered freq table)</div>
+      <p style="font-size:1.08em;margin:4px 0">Median is at the $\left(\dfrac{n+1}{2}\right)$th value.</p>
+      <p class="mini">Even $n$: average the two middle values.</p>
+    </div>
+    <div class="card teal">
+      <div class="label">Grouped (CF graph)</div>
+      <p style="font-size:1.08em;margin:4px 0">Estimate the median at the $\left(\dfrac{n}{2}\right)$th value. &nbsp;<span class="mini">(Key Point 2.6)</span></p>
+      <p class="mini">We use $n/2$ because the graph is already an estimate.</p>
+    </div>
+  </div>
+  <div class="fragment fade-in">
+    <div class="trap"><strong>Don&rsquo;t confuse position with value.</strong> $\dfrac{n+1}{2}$ or $\dfrac{n}{2}$ tells you <em>which</em> data value &mdash; not the value itself.</div>
+  </div>
+</section>
+
+<!-- 3. UNGROUPED EXAMPLE — DIY STORE -->
+<section>
+  <span class="step">EXAMPLE &middot; UNGROUPED MEDIAN</span>
+  <h2>Back-to-back stem-and-leaf &mdash; DIY store</h2>
+  <div class="two-col wide-right">
+    <div>
+      <p class="mini">Customers per hour.</p>
+      <div class="stem">Monday&nbsp;(12) | | Saturday&nbsp;(15)
+8&nbsp;6&nbsp;3&nbsp;1&nbsp;0&nbsp;0 | 2 | 2&nbsp;3&nbsp;4&nbsp;6
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;3&nbsp;1&nbsp;1&nbsp;0 | 3 | 5&nbsp;5&nbsp;6&nbsp;8&nbsp;9&nbsp;9
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 | 4 | 0&nbsp;1&nbsp;3&nbsp;7&nbsp;9</div>
+      <p class="mini" style="margin-top:6px"><strong>Key.</strong> $0\mid2\mid2$ = 20 customers Mon, 22 customers Sat.</p>
+    </div>
+    <div>
+      <div class="fragment fade-in">
+        <div class="card teal"><div class="label">Saturday &middot; $n=15$</div>
+          <p style="margin:4px 0">Position $=\dfrac{15+1}{2}=8$th value.</p>
+          <p style="margin:4px 0">Read L&rarr;R: row 1 has 4, row 2 has 6 more &rArr; 8th value is 2nd in row 2 $=\mathbf{38}$.</p>
+        </div>
+      </div>
+      <div class="fragment fade-in">
+        <div class="card gold"><div class="label">Monday &middot; $n=12$</div>
+          <p style="margin:4px 0">Position $=\dfrac{12+1}{2}=6.5$th &mdash; average the 6th and 7th.</p>
+          <p style="margin:4px 0">Read R&rarr;L: 6th is end of row 1 $=28$; 7th is start of row 2 $=30$.</p>
+          <p style="margin:4px 0">Median $=\dfrac{28+30}{2}=\mathbf{29}$.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="fragment fade-in">
+    <div class="trap"><strong>Back-to-back trap.</strong> The left side <em>ascends right-to-left</em>. Count in the direction the leaves grow.</div>
+  </div>
+</section>
+
+<!-- 4. WORKED EXAMPLE 2.13 -->
+<section>
+  <span class="step teal">WORKED EXAMPLE 2.13 &middot; FREQUENCY TABLE</span>
+  <h2>Median of 65 readings &mdash; use the CF column</h2>
+  <table class="stat">
+    <tr><th>$x$</th><th>$f$</th><th>$cf$</th><th>Positions</th></tr>
+    <tr><td class="row-label">40</td><td>11</td><td>11</td><td>1st &ndash; 11th</td></tr>
+    <tr><td class="row-label">41</td><td>23</td><td>34</td><td>12th &ndash; 34th</td></tr>
+    <tr><td class="row-label">42</td><td>19</td><td>53</td><td>35th &ndash; 53rd</td></tr>
+    <tr><td class="row-label">43</td><td>8</td><td>61</td><td>54th &ndash; 61st</td></tr>
+    <tr><td class="row-label">44</td><td>4</td><td>65</td><td>62nd &ndash; 65th</td></tr>
+  </table>
+  <div class="fragment fade-in">
+    <p style="margin-top:8px"><strong>Step 1.</strong> Position $=\dfrac{n+1}{2}=\dfrac{65+1}{2}=33$rd value.</p>
+  </div>
+  <div class="fragment fade-in">
+    <p><strong>Step 2.</strong> The 12th &ndash; 34th values are all $41$ (from the $cf$ column).</p>
+  </div>
+  <div class="fragment fade-in">
+    <div class="answer"><span class="label">Median</span>$\bar{x}_{med}=\mathbf{41}$. &nbsp;<em>Not</em> the middle of the five $x$-values &mdash; the middle of the 65 <em>readings</em>.</div>
+  </div>
+</section>
+
+<!-- 5. KEY POINT 2.6 — CF GRAPH -->
+<section>
+  <span class="step rose">KEY POINT 2.6 &middot; GROUPED DATA</span>
+  <h2>Estimating the median from a CF graph</h2>
+  <p>With grouped / continuous data we <em>cannot</em> see individual values. We estimate the median by reading from a cumulative frequency graph.</p>
+  <div class="two-col" style="margin-top:8px">
+    <div>
+      <div class="card gold">
+        <div class="label">The recipe</div>
+        <ol class="tight">
+          <li>Find $\dfrac{n}{2}$ on the vertical (CF) axis.</li>
+          <li>Draw a horizontal line to the curve.</li>
+          <li>Drop a perpendicular to the horizontal axis.</li>
+          <li>Read off the data value &mdash; that is your estimated median.</li>
+        </ol>
+      </div>
+    </div>
+    <div>
+      <svg class="shape" viewBox="0 0 260 200" style="width:100%;max-width:340px">
+        <line class="axis" x1="30" y1="170" x2="250" y2="170"/>
+        <line class="axis" x1="30" y1="20" x2="30" y2="170"/>
+        <path class="curve" d="M30,170 Q70,165 100,140 T170,55 Q210,35 240,30"/>
+        <line class="line" stroke="#5fe5d6" x1="30" y1="95" x2="135" y2="95"/>
+        <line class="line" stroke="#5fe5d6" x1="135" y1="95" x2="135" y2="170"/>
+        <text x="4" y="95" font-size="10">$n/2$</text>
+        <text x="125" y="186" font-size="11" fill="#5fe5d6">median</text>
+        <text x="215" y="188" font-size="10">mass</text>
+        <text x="5" y="22" font-size="10">CF</text>
+      </svg>
+      <p class="shape-cap">read across &middot; drop down</p>
+    </div>
+  </div>
+  <div class="fragment fade-in">
+    <div class="card teal"><p style="margin:2px 0;font-size:.98em"><strong>Position vs value.</strong> &nbsp;$n/2$ is where on the CF axis you start; the median is where on the data axis you finish.</p></div>
+  </div>
+</section>
+
+<!-- 6. CF GRAPH APPLIED EXAMPLE -->
+<section>
+  <span class="step teal">APPLIED &middot; MUSEUM ARTEFACTS</span>
+  <h2>300 artefacts &mdash; estimate the median mass</h2>
+  <p>The CF graph has total $n=300$, so we estimate the median at $\dfrac{n}{2}=\mathbf{150}$.</p>
+  <div class="two-col">
+    <div>
+      <svg class="shape" viewBox="0 0 280 210" style="width:100%;max-width:320px">
+        <line class="axis" x1="34" y1="180" x2="270" y2="180"/>
+        <line class="axis" x1="34" y1="20" x2="34" y2="180"/>
+        <!-- y gridlines labels -->
+        <text x="4" y="40" font-size="9">300</text>
+        <text x="4" y="80" font-size="9">200</text>
+        <text x="4" y="120" font-size="9">100</text>
+        <text x="20" y="183" font-size="9">0</text>
+        <text x="68" y="195" font-size="9">1</text>
+        <text x="108" y="195" font-size="9">2</text>
+        <text x="148" y="195" font-size="9">3</text>
+        <text x="188" y="195" font-size="9">4</text>
+        <text x="228" y="195" font-size="9">5</text>
+        <text x="200" y="205" font-size="10">Mass (kg)</text>
+        <text x="4" y="22" font-size="9">CF</text>
+        <path class="curve" d="M34,180 Q65,178 88,165 Q120,140 140,100 Q160,60 200,40 Q230,30 260,30"/>
+        <line class="line" stroke="#5fe5d6" x1="34" y1="100" x2="140" y2="100"/>
+        <line class="line" stroke="#5fe5d6" x1="140" y1="100" x2="140" y2="180"/>
+        <text x="4" y="104" font-size="9" fill="#5fe5d6">150</text>
+        <text x="128" y="196" font-size="10" fill="#5fe5d6">2.6</text>
+      </svg>
+    </div>
+    <div>
+      <div class="fragment fade-in">
+        <p style="margin-top:0"><strong>Step 1.</strong> Read across from CF $=150$.</p>
+      </div>
+      <div class="fragment fade-in">
+        <p><strong>Step 2.</strong> Drop down to the mass axis.</p>
+      </div>
+      <div class="fragment fade-in">
+        <div class="answer"><span class="label">Estimate</span>Median mass $\approx \mathbf{2.6\ \text{kg}}$.</div>
+      </div>
+      <div class="fragment fade-in">
+        <div class="trap"><strong>Common slip.</strong> Writing &ldquo;median $=150$&rdquo;. $150$ is the <em>position</em>; $2.6$ kg is the value.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. §2.4 CHOOSING AN AVERAGE — motivation -->
+<section>
+  <span class="step rose">&sect;2.4 &middot; CHOOSING AN AVERAGE</span>
+  <h2>Which of the three should we use?</h2>
+  <p>A student scores $3,\ 4,\ 6,\ 7,\ 8,\ 11,\ 12,\ 13,\ 17,\ 17$ out of 20 on ten tests.</p>
+  <div class="fragment fade-in">
+    <div class="two-col" style="margin-top:8px">
+      <div class="card gold"><div class="label">Mode</div><p style="margin:4px 0;font-size:1.15em"><strong>17</strong></p><p class="mini">Highest &mdash; impresses parents.</p></div>
+      <div class="card teal"><div class="label">Mean</div><p style="margin:4px 0;font-size:1.15em"><strong>9.8</strong></p><p class="mini">All values count.</p></div>
+      <div class="card violet"><div class="label">Median</div><p style="margin:4px 0;font-size:1.15em"><strong>9.5</strong></p><p class="mini">Middle $=\dfrac{8+11}{2}$.</p></div>
+    </div>
+  </div>
+  <div class="fragment fade-in">
+    <div class="trap"><strong>Both mean and median say &lt; 10/20.</strong> The mode gives an answer, but a <em>misleading</em> one. The &ldquo;right&rdquo; average depends on <em>why</em> you&rsquo;re reporting it.</div>
+  </div>
+</section>
+
+<!-- 8. COMPARISON TABLE -->
+<section>
+  <span class="step">THE COMPARISON TABLE</span>
+  <h2>Advantages and disadvantages</h2>
+  <table class="stat" style="font-size:.86em">
+    <tr><th></th><th>Advantages</th><th>Disadvantages</th></tr>
+    <tr><td class="row-label">Mode</td>
+        <td style="text-align:left">Unaffected by extremes. Useful for popular sizes / qualitative data. Works for any data type.</td>
+        <td style="text-align:left">Ignores most values. Rarely used in further calculations.</td></tr>
+    <tr><td class="row-label">Mean</td>
+        <td style="text-align:left">Uses every value. Standard for further calculations. Most widely understood.</td>
+        <td style="text-align:left">Needs every value. Pulled by extreme values.</td></tr>
+    <tr><td class="row-label">Median</td>
+        <td style="text-align:left">Found without knowing every value. Relatively unaffected by extremes.</td>
+        <td style="text-align:left">Uses only the order of values &mdash; ignores magnitudes.</td></tr>
+  </table>
+  <div class="fragment fade-in">
+    <div class="card teal" style="margin-top:8px">
+      <p class="mantra" style="margin:2px 0">Rule of thumb</p>
+      <p style="margin:4px 0;font-size:1em"><strong>Symmetric, no extremes</strong> &rarr; mean. &nbsp;<strong>Skewed or outliers</strong> &rarr; median. &nbsp;<strong>Popular category</strong> &rarr; mode.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9. EXTREME VALUES EFFECT -->
+<section>
+  <span class="step teal">THE EFFECT OF ONE EXTREME VALUE</span>
+  <h2>Mean breaks &mdash; median holds</h2>
+  <p>Dataset: $\ 40,\ 40,\ 70,\ 100,\ 130,\ 250$.</p>
+  <table class="stat" style="font-size:.95em">
+    <tr><th></th><th>Mode</th><th>Median</th><th>Mean</th></tr>
+    <tr><td class="row-label">Original</td><td>40</td><td>85</td><td>105</td></tr>
+    <tr><td class="row-label">Change $250\to 880$</td><td>40</td><td>85</td><td><span style="color:var(--rose)">210</span></td></tr>
+  </table>
+  <div class="fragment fade-in">
+    <p style="margin-top:8px">Mode and median are <strong>unchanged</strong>. The mean jumps by $100\%$.</p>
+  </div>
+  <div class="fragment fade-in">
+    <div class="card gold">
+      <p style="margin:2px 0;font-size:.98em"><strong>Exception &mdash; LIBOR.</strong> The median of banks&rsquo; submitted rates was manipulated by false submissions. &ldquo;Resistant&rdquo; is not the same as &ldquo;impossible to move&rdquo;.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10. §2.5 SKEWNESS -->
+<section>
+  <span class="step rose">&sect;2.5 &middot; SKEWNESS</span>
+  <h2>What the shape tells you</h2>
+  <div class="shape-wrap">
+    <div>
+      <svg class="shape" viewBox="0 0 160 100">
+        <line class="axis" x1="10" y1="85" x2="150" y2="85"/>
+        <path class="curve" d="M10,85 Q30,80 50,40 Q75,10 100,40 Q130,80 150,85"/>
+        <line class="line" stroke="#ffc24d" x1="80" y1="40" x2="80" y2="85"/>
+        <text x="72" y="98" fill="#ffc24d">mean=median=mode</text>
+      </svg>
+      <p class="shape-cap">Symmetric</p>
+    </div>
+    <div>
+      <svg class="shape" viewBox="0 0 160 100">
+        <line class="axis" x1="10" y1="85" x2="150" y2="85"/>
+        <path class="curve" d="M10,85 Q22,80 40,30 Q58,12 75,35 Q100,75 150,85"/>
+        <line class="line" stroke="#5fe5d6" x1="50" y1="22" x2="50" y2="85"/>
+        <line class="line" stroke="#b9a3ff" x1="63" y1="30" x2="63" y2="85"/>
+        <line class="line" stroke="#ffc24d" x1="78" y1="45" x2="78" y2="85"/>
+        <text x="30" y="96" fill="#5fe5d6" font-size="9">mode</text>
+        <text x="55" y="96" fill="#b9a3ff" font-size="9">med</text>
+        <text x="78" y="96" fill="#ffc24d" font-size="9">mean</text>
+      </svg>
+      <p class="shape-cap">Positive skew &middot; long right tail</p>
+    </div>
+    <div>
+      <svg class="shape" viewBox="0 0 160 100">
+        <line class="axis" x1="10" y1="85" x2="150" y2="85"/>
+        <path class="curve" d="M10,85 Q60,75 85,35 Q102,12 120,30 Q138,80 150,85"/>
+        <line class="line" stroke="#ffc24d" x1="85" y1="45" x2="85" y2="85"/>
+        <line class="line" stroke="#b9a3ff" x1="100" y1="30" x2="100" y2="85"/>
+        <line class="line" stroke="#5fe5d6" x1="113" y1="22" x2="113" y2="85"/>
+        <text x="60" y="96" fill="#ffc24d" font-size="9">mean</text>
+        <text x="90" y="96" fill="#b9a3ff" font-size="9">med</text>
+        <text x="113" y="96" fill="#5fe5d6" font-size="9">mode</text>
+      </svg>
+      <p class="shape-cap">Negative skew &middot; long left tail</p>
+    </div>
+  </div>
+  <div class="fragment fade-in" style="margin-top:8px">
+    <div class="two-col">
+      <div class="card gold"><div class="label">Positive skew</div><p style="margin:4px 0">mode $<$ median $<$ mean</p><p class="mini">Tail of large values pulls the mean up.</p></div>
+      <div class="card teal"><div class="label">Negative skew</div><p style="margin:4px 0">mean $<$ median $<$ mode</p><p class="mini">Tail of small values pulls the mean down.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. SKEWNESS APPLIED -->
+<section>
+  <span class="step teal">APPLIED &middot; COURIER DELIVERIES</span>
+  <h2>100 packages &mdash; days to deliver</h2>
+  <table class="stat" style="font-size:.9em">
+    <tr><th>Days</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+    <tr><td class="row-label">$f$</td><td>10</td><td>40</td><td>25</td><td>14</td><td>8</td><td>3</td></tr>
+  </table>
+  <div class="fragment fade-in">
+    <div class="step-row"><span class="n">1</span><span>Mode $=\mathbf{2}$ days (highest frequency, 40).</span></div>
+  </div>
+  <div class="fragment fade-in">
+    <div class="step-row"><span class="n">2</span><span>$n=100$. 50th &amp; 51st values both fall at $x=3$. Median $=\mathbf{2.5}$ days (between the 50th and 51st).</span></div>
+  </div>
+  <div class="fragment fade-in">
+    <div class="step-row"><span class="n">3</span><span>Mean $=\dfrac{1(10)+2(40)+3(25)+4(14)+5(8)+6(3)}{100}=\dfrac{279}{100}=\mathbf{2.79}$ days.</span></div>
+  </div>
+  <div class="fragment fade-in">
+    <div class="answer"><span class="label">Interpret</span>Mode $<$ median $<$ mean $\Rightarrow$ <strong>positively skewed</strong>. The long right tail (a few slow deliveries) drags the mean up.</div>
+  </div>
+</section>
+
+<!-- 12. EXAM TWISTS -->
+<section>
+  <span class="step rose">EXAM TWISTS</span>
+  <h2>Where students lose marks</h2>
+  <div class="twist-grid">
+    <div class="twist"><span class="t">Twist 1</span>Position vs value &mdash; writing $\dfrac{n+1}{2}$ as the answer instead of the data value at that position.</div>
+    <div class="twist"><span class="t">Twist 2</span>$n/2$ (CF graph) vs $\dfrac{n+1}{2}$ (ungrouped). Pick the right one.</div>
+    <div class="twist"><span class="t">Twist 3</span>Back-to-back stem-leaf &mdash; one side is read right-to-left.</div>
+    <div class="twist"><span class="t">Twist 4</span>&ldquo;Which average and why&rdquo; &mdash; one mark for the choice, one mark for the <em>reason</em>.</div>
+    <div class="twist"><span class="t">Twist 5</span>Deducing skew from mean vs median &mdash; which is bigger tells you the direction.</div>
+    <div class="twist"><span class="t">Twist 6</span>Effect of changing one value &mdash; mean shifts; median &amp; mode usually don&rsquo;t.</div>
+  </div>
+  <div class="fragment fade-in" style="margin-top:6px">
+    <div class="card gold"><p style="margin:2px 0;font-size:.96em"><strong>One mantra for shape.</strong> <span class="mantra" style="font-size:.95em">mean $>$ median &rArr; positive skew. &nbsp; mean $<$ median &rArr; negative skew.</span></p></div>
+  </div>
+</section>
+
+<!-- 13. CLASSWORK -->
+<section>
+  <span class="step teal">CLASSWORK &middot; DO NOW (12 MIN)</span>
+  <h2>Two questions, finish in class</h2>
+
+  <div class="q-box teal">
+    <p style="margin:0 0 6px"><span class="qlabel">Classwork Q1 &middot; Ex 2E Q1 (a,&nbsp;b) &middot; p. 44</span></p>
+    <p style="margin:0">A dentist&rsquo;s patients over 20 days: stems 0, 1, 2 with leaves $\ 0\!\mid\!4\,4\,4\,5\,6\,6\,6\,7\ ;\ 1\!\mid\!4\,5\,5\,6\,6\,7\,7\,8\,8\,9\ ;\ 2\!\mid\!0\,1$. &nbsp; Key: $1\!\mid\!5=15$ patients.</p>
+    <p style="margin:6px 0 0">(a) Find the median. &nbsp;&nbsp; (b) On 8 of these 20 days the dentist was late. To justify being late, would they quote the median or the mean? Explain.</p>
+    <div class="fragment fade-in">
+      <div class="answer"><span class="label">Answer</span>(a) $n=20$, position $=\dfrac{21}{2}=10.5$th. 10th and 11th values are both $15$. Median $=\mathbf{15}$.<br>(b) $\Sigma x=42+165+41=248$, mean $=\dfrac{248}{20}=\mathbf{12.4}$. Median $(15)>$ mean $(12.4)$, so the dentist would quote the <strong>median</strong> &mdash; it makes the &ldquo;average workload&rdquo; look higher.</div>
+    </div>
+  </div>
+
+  <div class="q-box" style="margin-top:10px">
+    <p style="margin:0 0 6px"><span class="qlabel">Classwork Q2 &middot; Ex 2E Q3 (a,&nbsp;b) &middot; p. 44</span></p>
+    <p style="margin:0">Values of $x$ with frequencies: &nbsp;$x$:&nbsp;4,&nbsp;5,&nbsp;6,&nbsp;7,&nbsp;8&nbsp;&nbsp;|&nbsp;&nbsp;$f$:&nbsp;14,&nbsp;13,&nbsp;4,&nbsp;12,&nbsp;15.</p>
+    <p style="margin:6px 0 0">(a) Find the median and the mode. &nbsp;&nbsp; (b) Give one positive and one negative aspect of using each as the average.</p>
+    <div class="fragment fade-in">
+      <div class="answer"><span class="label">Answer</span>(a) $n=58$, position $=29.5$. $cf=\{14,27,31,43,58\}$. 29th and 30th values are both $6$. Median $=\mathbf{6}$. &nbsp;Mode $=\mathbf{8}$ (largest freq, 15).<br>(b) <em>Median</em> &nbsp;+ resistant to extremes; &ndash; ignores magnitude of data. &nbsp; <em>Mode</em> &nbsp;+ reflects most common value; &ndash; ignores almost all data.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 14. HOMEWORK — part 1 -->
+<section>
+  <span class="step violet">HOMEWORK &middot; PRACTICE SET (6 QUESTIONS)</span>
+  <h2>All from Exercise 2E &mdash; p. 44&ndash;46</h2>
+
+  <div class="q-box violet">
+    <p style="margin:0 0 4px"><span class="qlabel">H1 &middot; Ex 2E Q2 (a,&nbsp;b) &middot; p. 44 &middot; Compare mean and median</span></p>
+    <p style="margin:0">$t$: 7, 8, 9, 10, 11, 12, 13 &nbsp;|&nbsp; $f$: 4, 7, 9, 14, 16, 41, 9. &nbsp;(a) Find the median. &nbsp;(b) Which feature suggests $\bar{t}<$ median? Confirm or refute.</p>
+    <div class="fragment fade-in">
+      <div class="answer"><span class="label">Answer</span>(a) $n=100$, pos $=50.5$. $cf=\{4,11,20,34,50,91,100\}$. 50th $=11$; 51st $=12$. Median $=\dfrac{11+12}{2}=\mathbf{11.5}$.<br>(b) Negative skew is suggested by heavy clustering at the top end ($f=41$ at $t=12$) with a long low-side tail. Confirm: $\bar{t}=\dfrac{28+56+81+140+176+492+117}{100}=\dfrac{1090}{100}=\mathbf{10.9}<11.5$. &check;</div>
+    </div>
+  </div>
+
+  <div class="q-box violet" style="margin-top:8px">
+    <p style="margin:0 0 4px"><span class="qlabel">H2 &middot; Ex 2E Q4 (a,&nbsp;b) &middot; p. 45 &middot; CF graph, split by median</span></p>
+    <p style="margin:0">A CF graph shows the times taken by $112$ people to complete a puzzle. (a) Estimate the median time. (b) The median splits the group in two; find the median time of each half.</p>
+    <div class="fragment fade-in">
+      <div class="answer"><span class="label">Method</span>(a) $\dfrac{n}{2}=56$. Read across from $CF=56$, drop down &mdash; estimate the median (from the graph, $\approx \mathbf{5.5\ \text{min}}$).<br>(b) Lower half: $\dfrac{56}{2}=28$. Read across at $CF=28$ &rarr; lower-half median $\approx \mathbf{3.5\text{ to }4\ \text{min}}$.<br>Upper half: $56+28=84$. Read across at $CF=84$ &rarr; upper-half median $\approx \mathbf{7\ \text{min}}$.<br><em>Your exact reading from the printed graph may differ by $\pm 0.5$ min &mdash; that is acceptable.</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- 15. HOMEWORK — part 2 -->
+<section>
+  <span class="step violet">HOMEWORK &middot; CONTINUED</span>
+  <h2>Graphs, changes &amp; shape</h2>
+
+  <div class="q-box violet">
+    <p style="margin:0 0 4px"><span class="qlabel">H3 &middot; Ex 2E Q5 (a,&nbsp;b) &middot; p. 45 &middot; CF polygon</span></p>
+    <p style="margin:0">Masses $m$ kg of $148$ objects: $cf$ at $m<0,\,0.2,\,0.3,\,0.5,\,0.7,\,0.8$ is $0,16,28,120,144,148$. Construct a CF polygon and estimate the number of objects with masses (a) within $0.1$ kg of the median, (b) more than $200$ g from the median.</p>
+    <div class="fragment fade-in">
+      <div class="answer"><span class="label">Answer</span>Median at $\dfrac{n}{2}=74$: lies in the $0.3\le m<0.5$ class. Interpolate: $0.3+\dfrac{74-28}{120-28}\times 0.2=0.3+0.1=\mathbf{0.4}$ kg.<br>(a) Within $0.1$ kg = $[0.3,\,0.5]$ kg &rarr; count $=120-28=\mathbf{92}$ objects.<br>(b) More than $0.2$ kg from median = $m<0.2$ or $m>0.6$. $cf(0.6)=120+\dfrac{0.1}{0.2}(144-120)=132$. Count $=16+(148-132)=\mathbf{32}$ objects.</div>
+    </div>
+  </div>
+
+  <div class="q-box violet" style="margin-top:8px">
+    <p style="margin:0 0 4px"><span class="qlabel">H4 &middot; Ex 2E Q6 &middot; p. 45 &middot; Effect of one wrong value</span></p>
+    <p style="margin:0">Quiz marks: $11,13,15,15,17,18,19,20$. The $11$ was a typing error &mdash; it should be $1$. What is the effect on the mode, mean and median?</p>
+    <div class="fragment fade-in">
+      <div class="answer"><span class="label">Answer</span>Before: mode $=15$, median $=\dfrac{15+17}{2}=16$, mean $=\dfrac{128}{8}=16$.<br>After ($1,13,15,15,17,18,19,20$): mode $=\mathbf{15\ \text{unchanged}}$, median $=\mathbf{16\ \text{unchanged}}$, mean $=\dfrac{118}{8}=\mathbf{14.75}$ (down by $1.25$).<br><em>Only the mean responds to the extreme change &mdash; median and mode do not.</em></div>
+    </div>
+  </div>
+
+  <div class="q-box violet" style="margin-top:8px">
+    <p style="margin:0 0 4px"><span class="qlabel">H5 &middot; Ex 2E Q7 (a,&nbsp;b) &middot; p. 45 &middot; Grouped median + manufacturer&rsquo;s choice</span></p>
+    <p style="margin:0">Light-bulb lifetimes (nearest 10 days): classes 90&ndash;100, 110&ndash;120, 130&ndash;140, 150&ndash;160, 170&ndash;190, 200&ndash;220, 230&ndash;260 with $f=12,28,54,63,41,16,6$. (a) Estimate the median using upper class boundaries on a CF graph. (b) For a publicity campaign, would the manufacturer prefer the median or the mean?</p>
+    <div class="fragment fade-in">
+      <div class="answer"><span class="label">Answer</span>$n=220$, $\dfrac{n}{2}=110$. Upper class boundaries: $105,125,145,165,195,225,265$; $cf=12,40,94,157,198,214,220$.<br>Interpolate in class $145<x<165$: median $=145+\dfrac{110-94}{157-94}\times 20\approx \mathbf{150\ \text{days}}$.<br>(b) Mid-values $95,115,135,155,180,210,245$. Mean $\approx \dfrac{33625}{220}\approx \mathbf{152.8\ \text{days}}$. Mean $>$ median, so the manufacturer would use the <strong>mean</strong> to advertise a slightly longer average lifetime.</div>
+    </div>
+  </div>
+
+  <div class="q-box violet" style="margin-top:8px">
+    <p style="margin:0 0 4px"><span class="qlabel">H6 &middot; Ex 2E Q3 (c) &middot; p. 44 &middot; Stretch</span></p>
+    <p style="margin:0">Using the table from Q2: some values were incorrectly recorded as $8$ instead of $4$. Given that the true median is $5.5$, how many values were incorrect?</p>
+    <div class="fragment fade-in">
+      <div class="answer"><span class="label">Answer</span>Let $k$ be the mis-recorded count. True frequencies: $f_4=14+k,\ f_8=15-k$. Cumulative becomes $\{14+k,\,27+k,\,31+k,\,43+k,\,58\}$.<br>For median $=5.5$ with $n=58$ (pos $29.5$), the 29th must land on $x=5$ and the 30th on $x=6$ &rArr; $27+k\ge 29$ and $27+k<30$ &rArr; $\mathbf{k=2}$.<br><em>Check:</em> new $cf=\{16,29,33,45,58\}$ &rarr; 29th $=5$, 30th $=6$, median $=5.5$ &check;</div>
+    </div>
+  </div>
+
+  <div class="fragment fade-in">
+    <p class="mini" style="margin-top:8px">Submit next lesson. For CF-graph questions, draw the graph <em>on graph paper</em> &mdash; the reading is worth marks.</p>
+  </div>
+</section>
+
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="../assets/boot.js"></script>
+</body>
+</html>
